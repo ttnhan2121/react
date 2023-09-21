@@ -2,7 +2,7 @@
 import './App.css';
 import Header from "./Component/DefaultLayout/Header/Header.jsx";
 import Footer from "./Component/DefaultLayout/Footer/Footer.jsx";
-import Container from "./Component/Container/Pages/MainPage/MainPage.jsx";
+import Container from "./Component/Container/Container.jsx";
 
 function App() {
   return (

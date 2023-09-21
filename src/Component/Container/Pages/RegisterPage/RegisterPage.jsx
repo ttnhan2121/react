@@ -1,8 +1,10 @@
-import './_RegisterPage.sass'
+import './_RegisterPage.scss'
 
 function RegisterPage() {
     return (  
-        <h1>RegisterPage</h1>
+        <div className='register'>
+            <h1>đăng ký</h1>
+        </div>
     );
 }
 

@@ -40,3 +40,11 @@ html{
     display: flex;
     flex-wrap: wrap;
 }   
+
+a{
+    text-decoration: none;
+    
+}
+li{
+    list-style: none;
+}

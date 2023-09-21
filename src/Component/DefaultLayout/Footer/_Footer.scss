@@ -1,3 +1,32 @@
 .footer{
-    
+    border-top: 1px solid gray;
+    color: #0f5bff;
+    margin: 0 160px;
+    height: 300px;
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    .ft-item{
+        padding-top: 10px;
+        width: auto;
+        flex: 1;
+        justify-content: space-around;
+        .ft-link{
+            padding-left: 10px;
+        }
+        .info li{
+            padding-left: 10px;
+        }
+    }
+}
+.iconLink{
+    display: flex;
+    align-items: center;
+}
+hr{
+    width: 50px;
+}
+a{
+    margin: 0;
+    color: #0f5bff;
 }
