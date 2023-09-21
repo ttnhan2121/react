@@ -2,6 +2,9 @@
     --color_main: #0f5bff;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300;1,400;1,500;1,600&display=swap');
+
+
 *,
 *::before,
 *::after{
@@ -19,7 +22,7 @@ body{
 html{
     font-size: 62.5%;
     line-height: 1.6rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 

@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;1,300;1,400;1,500;1,600&display=swap');
+
 .header{
     height: 60px;
     background-color: black;
@@ -19,7 +21,7 @@
             list-style: none;
             padding-left: 0;
             display: flex;
-            // align-items: center;
+            align-items: center;
             .navbar-itemfunc{
                 font-size: 1.5rem;
                 margin: 0 20px;
@@ -32,14 +34,24 @@
         }
     }
 }
+img{
+    margin-right: 15px;
+}
 .li{
     list-style: none;
 }
 .logo{
     display: flex;
-    flex-direction: column;
     font-size: 1.5rem;
     padding: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+.logo-text{
+    list-style: none;
+}
+.logo-text-brand{
+    font-weight: 600;
+    font-style: italic;
 }
 .button-signup{
     border-radius: 12px;
@@ -47,6 +59,7 @@
     height: 30px;
     color: #1D267D;
     border: none;
+    margin-right: 15px;
     background-image: var(--color_main);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     &:hover{
