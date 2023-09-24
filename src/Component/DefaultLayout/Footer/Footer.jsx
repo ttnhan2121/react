@@ -22,10 +22,10 @@ function Footer() {
                 <h3>CHÍNH SÁCH HỖ TRỢ:</h3> 
                 <hr></hr>
                 <ul className="info">
-                    <Link to={''} className="ft-link">Giới thiệu</Link><br></br>
-                    <Link to={''} className="ft-link">Chính sách đổi trả</Link><br></br>
-                    <Link to={''} className="ft-link">Chính sách bảo mật</Link><br></br>
-                    <Link to={''} className="ft-link">Điều khoản dịch vụ</Link>
+                    <Link to={'/about'} className="ft-link">Giới thiệu</Link><br></br>
+                    <Link to={'/chinh-sach-doi-tra'} className="ft-link">Chính sách đổi trả</Link><br></br>
+                    <Link to={'/chinh-sach-bao-mat'} className="ft-link">Chính sách bảo mật</Link><br></br>
+                    <Link to={'/dieu-khoan-dich-vu'} className="ft-link">Điều khoản dịch vụ</Link>
                 </ul>
             </div>
             <div className="ft-item">
@@ -34,19 +34,19 @@ function Footer() {
                 <p>Hãy liên kết với chúng tôi.</p>
                 <div className='iconLink'>
                     <div className='fb'>
-                        <a href='https://www.facebook.com/store.area515' target='_blank' rel='noopenner noreferrer'>
+                        <Link to={'https://www.facebook.com/store.area515'} className="ft-link" target='_blank'>
                             <img src={FB} alt='fblogo'  width={25}></img>
-                        </a>
+                        </Link>
                     </div>
                     <div className='ins'>
-                        <a href='https://www.instagram.com/store.area515' target='_blank' rel='noopenner noreferrer'>
+                        <Link to = {'https://www.instagram.com/store.area515'} className='ft-link' target='_black'>
                             <img src={INS} alt='inslogo'  width={25}></img>
-                        </a>
+                        </Link>
                     </div>
                     <div className='shopee'>
-                        <a href='https://shopee.vn/store.area515' target='_blank' rel='noopenner noreferrer'>
+                        <Link to={'https://shopee.vn/store.area515'} className='ft-link' target='_blank'>
                             <img src={SP} alt='splogo'  width={30}></img>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
