@@ -24,6 +24,9 @@
             width: 80%;
             display: flex;
             flex-direction: column;
+            .underline-text{
+                text-decoration: underline;
+            }
         }
         
     }

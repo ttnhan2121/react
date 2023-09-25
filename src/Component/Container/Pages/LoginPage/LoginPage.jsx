@@ -24,8 +24,7 @@ function LoginPage() {
           <Button variant="primary" type="submit">
             Submit
           </Button>
-          <Link to={}>Quên mật khẩu</Link>
-          <Link to={}>Đăng ký</Link>
+          <p><Link to={'/forgotpw'} className="underline-text">Quên mật khẩu</Link>Hoặc<Link to={'/register'} className="underline-text">Đăng ký</Link></p>
         </Form>
       </div>
     </div>

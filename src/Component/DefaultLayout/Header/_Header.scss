@@ -42,6 +42,9 @@
                     top:-5px;
                 }
             }
+            .user-tab{
+                padding-right: 10px;
+            }
             
         }
     }
@@ -64,33 +67,4 @@ img{
 .logo-text-brand{
     font-weight: 600;
     font-style: italic;
-}
-.button-signup{
-    border-radius: 12px;
-    width: 100px;
-    height: 30px;
-    color: #1D267D;
-    border: none;
-    margin-right: 15px;
-    background-image: var(--color_main);
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    &:hover{
-        background-color: rgb(255,255,255,80%);
-        cursor: pointer;
-    }
-}
-.button-login{
-    border-radius: 12px;
-    width: 100px;
-    height: 30px;
-    color: white;
-    border: none;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-image: linear-gradient(0, #1D267D, #0C134F);
-    &:hover{
-        color: #1D267D;
-        background-image: var(--color_main);
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-        cursor: pointer;
-    }
 }

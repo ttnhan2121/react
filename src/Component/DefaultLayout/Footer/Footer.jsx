@@ -12,8 +12,7 @@ function Footer() {
                 <hr></hr>
                 <ul className="info">
                     <li>
-                        Phone:
-                        <a href=""> 096 653 81 77 </a>
+                        Phone: 096 653 81 77
                     </li>
                     <li>Email: store.area515@gmail.com</li>
                 </ul>
