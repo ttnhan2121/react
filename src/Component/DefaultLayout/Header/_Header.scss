@@ -42,11 +42,12 @@
                     top:-5px;
                 }
             }
-            .user-tab{
-                padding-right: 10px;
-            }
-            
         }
+        .user-tab{
+            width: 150px;
+            display: flex;
+            justify-content: space-around;
+        } 
     }
 }
 img{

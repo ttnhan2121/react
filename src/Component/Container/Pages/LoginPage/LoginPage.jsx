@@ -4,11 +4,13 @@ import Form from "react-bootstrap/Form";
 import "./_LoginPage.scss";
 import { Link } from "react-router-dom";
 
+
 function LoginPage() {
+
   return (
     <div className="loginpage">
       <div className="login-box">
-        <h1>Login</h1>
+        <h1 className="text-login">Login</h1>
         <Form className="login-form">
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email Address</Form.Label>
