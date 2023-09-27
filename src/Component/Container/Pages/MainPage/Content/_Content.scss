@@ -1,0 +1,19 @@
+.title{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .doubleline{
+        flex: 1;
+        height: 5px;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+    .title-group{
+        color: #0f5bff;
+        font-size: 2rem;
+    }
+}
+.card-hover:hover{
+    transition: translate(1px,-1px);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}

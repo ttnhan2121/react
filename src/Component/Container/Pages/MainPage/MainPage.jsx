@@ -1,10 +1,11 @@
 import React from "react";
 import "./_MainPage.scss";
+import Content from "./Content/Content";
 function MainPage() {
   return (
     <div className="mainpage">
       <div className="slideshow"></div>
-      <div className="content">content</div>
+      <Content></Content>
     </div>
   );
 }

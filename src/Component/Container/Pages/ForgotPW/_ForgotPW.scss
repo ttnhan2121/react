@@ -1,3 +1,33 @@
 .forgotpw{
-    padding-top: 60px
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    .forgotpw-box{
+        margin: 40px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 10px;
+        width: 400px;
+        height: 400px;
+        box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+        .form-control{
+            font-size: 1.5rem;
+        }
+        .forgotpw-form {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            .underline-text{
+                text-decoration: underline !important;
+            }
+        }
+        .btn-primary{
+            font-size: 1.5rem;
+        }
+        
+    }
 }
