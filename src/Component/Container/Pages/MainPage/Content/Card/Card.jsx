@@ -4,7 +4,7 @@ import img1 from '../../../../../../assets/img/vn-11134207-7qukw-lk5h8qk0q32aa7.
 function Card() {
   return (
     <div class="card card-prop">
-      <img class="card-img-top" src={img1} alt="Card image cap" />
+      <img class="card-img-top img-product" src={img1} alt="Card image cap" />
       <div class="card-body">
         <h5 class="card-title">Card title</h5>
         <p class="card-text">

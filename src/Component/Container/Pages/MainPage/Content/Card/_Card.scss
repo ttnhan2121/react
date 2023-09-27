@@ -3,6 +3,11 @@
     height: 410px;
     font-family: 'Poppins', sans-serif;
     box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.15);
+    border-radius: 10px !important; 
+    .img-product{
+        border-top-left-radius: 10px !important;
+        border-top-right-radius: 10px !important;
+    }
     .card-title{
         font-size: 1.8rem;
     }
@@ -17,8 +22,9 @@
             }
         }
     }
-    // :hover{
-    //     transition: translate(1px,-1px);
-    //     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
-    // }
+    
+}
+.card-prop:hover{
+    transform: translate(1.5px,-1.5px);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
