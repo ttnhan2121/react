@@ -1,6 +1,6 @@
 .footer{
     border-top: 1px solid gray;
-    color: #0f5bff;
+    color: var(--color_main);
     margin: 0 160px;
     height: 300px;
     display: flex;
@@ -10,13 +10,19 @@
         padding-top: 10px;
         width: auto;
         flex: 1;
-        justify-content: space-around;
+        display: flex;
+        flex-direction: column;
+        .title-item{
+            text-align: center;
+        
+        }
         .ft-link{
             padding-left: 10px;
         }
         .info li{
             padding-left: 10px;
         }
+
     }
 }
 .iconLink{
@@ -29,4 +35,8 @@ hr{
 a{
     margin: 0;
     color: #0f5bff;
+}
+.ft-item hr{
+    margin-top: 0;
+    margin-bottom: 5px;
 }

@@ -1,4 +1,3 @@
-
 import './App.css';
 import Header from "./Component/DefaultLayout/Header/Header.jsx";
 import Footer from "./Component/DefaultLayout/Footer/Footer.jsx";
@@ -13,6 +12,7 @@ function App() {
       <Header></Header>
       <Container></Container>
       <Footer></Footer>
+      {/* <Cart show={showModal} onClose={closeModal}></Cart> */}
     </div>
   );
 }

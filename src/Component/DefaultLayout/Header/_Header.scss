@@ -44,9 +44,11 @@
             }
         }
         .user-tab{
+            margin-left: 60px;
             width: 150px;
             display: flex;
             justify-content: space-around;
+
         } 
     }
 }
@@ -63,9 +65,12 @@ img{
     font-family: 'Poppins', sans-serif;
 }
 .logo-text{
+    padding: 0;
     list-style: none;
 }
 .logo-text-brand{
     font-weight: 600;
     font-style: italic;
 }
+
+

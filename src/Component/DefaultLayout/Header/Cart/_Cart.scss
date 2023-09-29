@@ -1,0 +1,23 @@
+.cart{
+    display: none;
+    width: 650px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    right: 0;
+    background-color: #ccc;
+    .modal-containter{
+        background-color: white;
+        margin: 15%;
+        border: 1px solid black;
+        text-align: center;
+        position: relative;
+    }
+    .close{
+        position: absolute;
+        cursor: pointer;
+        
+    }
+}
