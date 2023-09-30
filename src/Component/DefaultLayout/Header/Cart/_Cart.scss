@@ -1,23 +1,26 @@
 .cart{
-    display: none;
-    width: 650px;
-    height: auto;
+    z-index: 999;
+    display: flex;
+    justify-content: flex-end;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     top: 0;
     right: 0;
-    left: 0;
-    right: 0;
-    background-color: #ccc;
-    .modal-containter{
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    .modal-container{
+        margin: 10px;
+        border-radius: 10px;
         background-color: white;
-        margin: 15%;
+        width: 650px;
+        top: 0;
+        right: 0;
+        bottom: -20px;
         border: 1px solid black;
         text-align: center;
-        position: relative;
     }
     .close{
-        position: absolute;
         cursor: pointer;
-        
     }
 }

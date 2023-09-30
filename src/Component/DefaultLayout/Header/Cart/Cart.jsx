@@ -1,12 +1,18 @@
 import './_Cart.scss'
 function Cart({show, onClose}) {
     const modalState = {
-        display: show ? 'block' : 'none',
+        visibility: show ? 'visible' : 'hidden',
     }
+    const handleModalClick = (event) => {
+        if (event.target.classList.contains('cart') && !event.target.closest('.modal-container')) {
+          onClose();
+        }
+      };
     return ( 
-        <div className='cart' style={modalState}>
+        <div className='cart' style={modalState} onClick={handleModalClick}>
             <div className='modal-container'>
-                <span className='close' onClick={onClose}></span>
+
+                {/* <div className='close' onClick={onClose}>close</div> */}
             </div>
         </div>    
     );
