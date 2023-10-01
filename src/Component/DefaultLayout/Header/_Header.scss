@@ -48,7 +48,10 @@
             width: 150px;
             display: flex;
             justify-content: space-around;
-
+            .btn-cart{
+                border: 0;
+                background: transparent;
+            }
         } 
     }
 }
