@@ -5,9 +5,29 @@
     box-shadow: 0px 3px 14px rgba(0, 0, 0, 0.15);
     border-radius: 10px !important; 
     transition: tranform 0.25s ease-in-out;
+    position: relative;
     .img-product{
         border-top-left-radius: 10px !important;
         border-top-right-radius: 10px !important;
+    }
+    .btn-quickview{
+        position: absolute;
+        padding: 12px 25px;
+        top:255px;
+        right: 7px;
+        left: 161px;
+        visibility: hidden;
+        border: none;
+        border-radius: 20px;
+        background-color: var(--color_main);
+        color: white;
+        font-size: 1.3rem;
+        &:hover{
+            background-color: white;
+            padding: 10px 25px;
+            color: var(--color_main);
+            border: 2px solid var(--color_main);
+        }
     }
     .card-title{
         font-size: 1.8rem;
@@ -28,4 +48,10 @@
 .card-prop:hover{
     transform: translate(1.5px,-1.5px);
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    .img-product{
+        content: url('../../../../../../assets/img/vn-11134207-7qukw-lk5h8qk0q32aa7.jpg');
+    }
+    .btn-quickview{
+        visibility: visible;
+    }
 }

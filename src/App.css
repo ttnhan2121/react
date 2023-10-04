@@ -44,3 +44,6 @@ a{
 li{
     list-style: none;
 }
+.modal-backdrop{
+    cursor: url('assets/img/CloseSquare.svg'),auto;
+}
