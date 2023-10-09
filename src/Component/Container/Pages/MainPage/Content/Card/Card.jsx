@@ -1,10 +1,13 @@
 import "./_Card.scss";
 import "bootstrap/dist/css/bootstrap.css";
-import img1 from '../../../../../../assets/img/vn-11134207-7qukw-lk5h8qk0oohudc.jpg'
+import img1 from '../../../../../../assets/img/515Kem-F.jpg'
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-
-
+import Carousel from 'react-bootstrap/Carousel';
+import imgdetails1 from '../../../../../../assets/img/515Kem-F.jpg';
+import imgdetails2 from '../../../../../../assets/img/515Kem-B.jpg';
+import imgdetails3 from '../../../../../../assets/img/4U3A0858.jpg';
+import imgdetails4 from '../../../../../../assets/img/4U3A0876.jpg';
 function Card() {
   const [show, setShow] = useState(false);
 
@@ -30,6 +33,26 @@ function Card() {
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <div className="main-review">
+            <div className="review-slideshow">
+                <Carousel>
+                  <Carousel.Item>
+                    <img src={imgdetails1} alt="img-prod" className="img-123"></img>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img src={imgdetails2} alt="img-prod" className="img-123"></img>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img src={imgdetails3} alt="img-prod" className="img-123"></img>
+                  </Carousel.Item>
+                  <Carousel.Item>
+                    <img src={imgdetails4} alt="img-prod" className="img-123"></img>
+                  </Carousel.Item>
+                </Carousel>
+            </div>
+            <div className="pick-reivew">áđâsd</div>
+          </div>
+          <div className="details-prod"></div>
         </Modal.Body>
       </Modal>
     </div>
