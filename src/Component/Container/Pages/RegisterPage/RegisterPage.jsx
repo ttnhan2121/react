@@ -49,7 +49,7 @@ function RegisterPage() {
                         <Form.Control required type="password" placeholder="Re-Password" />
                         <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                     </Form.Group>
-                    <Button variant="primary" type="submit" onClick={handleSubmit}>
+                    <Button className="btn-submit-signup" variant="primary" type="submit" onClick={handleSubmit}>
                         Submit
                     </Button>
                 </Form>

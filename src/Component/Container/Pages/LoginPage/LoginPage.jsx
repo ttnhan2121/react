@@ -23,7 +23,7 @@ function LoginPage() {
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check required type="checkbox" label="Remember me" />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="btn-submit" variant="primary" type="submit">
             Submit
           </Button>
           <p className="py-3"><Link to={'/forgotpw'} className="underline-text">Quên mật khẩu</Link> Hoặc <Link to={'/register'} className="underline-text">Đăng ký</Link></p>

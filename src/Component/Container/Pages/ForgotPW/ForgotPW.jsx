@@ -20,7 +20,7 @@ function ForgotPW() {
             <Form.Label>Password</Form.Label>
             <Form.Control required type="password" placeholder="Re-Password" />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="btn-submit" variant="primary" type="submit">
             Submit
           </Button>
         </Form>

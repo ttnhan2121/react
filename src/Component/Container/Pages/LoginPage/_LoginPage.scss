@@ -25,8 +25,10 @@
                 text-decoration: underline !important;
             }
         }
-        .btn-primary{
+        .btn-submit{
             font-size: 1.5rem;
+            padding: 5px 0 !important;            
+            background-color: var(--color_main) !important;
         }
         
     }

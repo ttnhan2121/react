@@ -27,9 +27,11 @@
             flex-direction: column;
             
         }
-        .btn-primary{
+        .btn-submit-signup{
             font-size: 1.5rem;
-            margin-bottom: 40px;
+            padding: 5px 0 !important;            
+            background-color: var(--color_main) !important;
+            margin-bottom: 40px ;
         }
     }
 }
