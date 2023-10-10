@@ -28,23 +28,23 @@
                 position: relative;
                 display: flex;
                 align-items: center;
-                cursor: pointer;
-                &:hover{
-                    .subNav{
-                        display: block;
-                    }
-                }
-                &::before{
-                    content: "";
-                    border: 30px solid;
-                    border-color: transparent;
-                    position: absolute;
-                    top:-5px;
-                }
+                // cursor: pointer;
+                // &:hover{
+                //     .subNav{
+                //         display: block;
+                //     }
+                // }
+                // &::before{
+                //     content: "";
+                //     border: 30px solid;
+                //     border-color: transparent;
+                //     position: absolute;
+                //     top:-5px;
+                // }
             }
         }
         .user-tab{
-            margin-left: 60px;
+            margin-left: 85px;
             width: 150px;
             display: flex;
             justify-content: space-around;
@@ -84,7 +84,7 @@ img{
 .offcanvas{
     margin: 10px !important;
     border-radius: 10px !important;
-    width: 650px !important;
+    width: 30% !important;
 }
 .offcanvas-body{
     display: flex;

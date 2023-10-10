@@ -1,7 +1,7 @@
 import './_Content.scss'
 import Card from './Card/Card';
 import "bootstrap/dist/css/bootstrap.css";
-
+import { Link } from 'react-router-dom';
 function Content() {
     return ( 
 
@@ -41,6 +41,7 @@ function Content() {
                         <Card></Card>
                     </div>
                 </div>
+                <Link to={'/shop'} className='btn-showall'>Xem tất cả</Link>
             </div>
         </div>
     );

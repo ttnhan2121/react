@@ -16,8 +16,8 @@ function ForgotPW() {
             <Form.Label>Password</Form.Label>
             <Form.Control required type="password" placeholder="Password" />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
+          <Form.Group className="mb-3" controlId="formBasicRePassword">
+            <Form.Label>Re-Password</Form.Label>
             <Form.Control required type="password" placeholder="Re-Password" />
           </Form.Group>
           <Button className="btn-submit" variant="primary" type="submit">
