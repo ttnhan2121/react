@@ -1,5 +1,5 @@
 import './_ShopPage.scss'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from '../MainPage/Content/Card/Card';
@@ -9,6 +9,9 @@ function ShopPage() {
         const selectedValue = event.target.textContent;
         setSelectedItem(selectedValue); 
       };
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []) 
     return (  
         <div className='shoppage'>
             <div className='panel'></div>

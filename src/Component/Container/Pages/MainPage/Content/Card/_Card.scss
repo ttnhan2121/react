@@ -55,4 +55,60 @@
         visibility: visible;
     }
 }
+.bodyreview{
+    display: flex;
+    .main-review{
+        flex: 1;
+        height: auto;   
+        .review-slideshow{
+            height: 389px;
+        }
+        
+              
+    }
+    .details-prod{
+        flex: 1;
+        height: auto;
+        margin-left: 10px;
+        .name-prod{
+
+        }
+        .price-prod{
+            .price-left{
+                font-size: 1.6rem;
+            }
+            .price-right{
+                padding-left: 15px;
+                text-decoration: line-through;
+            }
+        }
+        .size-prod{
+            display: flex;
+            align-items: center;
+            .size-details{
+                margin-left: 5px;
+            }
+        }
+        .btn-success{
+            background-color: var(--color_main) !important;
+        }
+    }
+}
+.carousel-item{
+    text-align: center;
+}
+.pvBody{
+    border: 1px solid black !important;
+    margin-top: 20px !important;
+}
+.pvBody img{
+    margin-right: 5px;
+}
+.img-123{
+    max-width: 389px;
+    max-height: 389px;
+    margin:0;
+    border-radius: 10px;
+}
+
 
