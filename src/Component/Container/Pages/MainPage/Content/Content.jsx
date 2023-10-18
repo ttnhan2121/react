@@ -1,10 +1,17 @@
 import './_Content.scss'
 import Card from './Card/Card';
 import "bootstrap/dist/css/bootstrap.css";
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+const apiURL = 'https://fakestoreapi.com/products';
 function Content() {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        fetch(apiURL)
+            .then((res) => res.json())
+            .then((result) => setData(result))
+    },[]);
     return ( 
-
         <div className='content min-vh-100 pt-3'> 
             <div className='container-fluid d-flex flex-column align-items-center'>
                 <div className='title d-flex'>
@@ -16,30 +23,14 @@ function Content() {
                     <hr className='doubleline'></hr>
                 </div>
                 <div className='row'>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
+                    {data.map((item) => {
+                        return(
+                            <div className='col-xxl-3 py-3 card-hover'>
+                                <Card data={item}></Card>
+                            </div>
+                        );
+                    }    
+                    )}
                 </div>
                 <Link to={'/shop'} className='btn-showall'>Xem tất cả</Link>
             </div>

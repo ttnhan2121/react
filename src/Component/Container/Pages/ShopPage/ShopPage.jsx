@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.css";
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from '../MainPage/Content/Card/Card';
+const apiURL = 'https://fakestoreapi.com/products';
+
 function ShopPage() {
     const [selectedItem, setSelectedItem] = useState('Sản phẩm nổi bật');
     const handleSelect = (eventKey, event) => {
@@ -12,6 +14,12 @@ function ShopPage() {
     useEffect(() => {
         window.scrollTo(0, 0)
     }, []) 
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        fetch(apiURL)
+            .then((res) => res.json())
+            .then((result) => setData(result))
+    },[]);
     return (  
         <div className='shoppage'>
             <div className='panel'></div>
@@ -39,30 +47,14 @@ function ShopPage() {
             </div>
             <div className='list-product'>
                 <div className='row'>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
-                    <div className='col-xxl-3 py-3 card-hover'>
-                        <Card></Card>
-                    </div>
+                    {data.map((item) => {
+                        return(
+                            <div className='col-xxl-3 py-3 card-hover'>
+                                <Card data={item}></Card>
+                            </div>
+                        );
+                    }    
+                    )}
                 </div>
             </div>
         </div>
