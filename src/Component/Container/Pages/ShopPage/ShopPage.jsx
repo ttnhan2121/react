@@ -22,7 +22,6 @@ function ShopPage() {
   }, []);
   return (
     <div className="shoppage">
-      <div className="panel"></div>
       <div className="header-shop">
         <div className="tittle">Tất cả sản phẩm</div>
         <div className="sort">
