@@ -10,20 +10,22 @@ import DieuKhoanDichVu from './Pages/DieuKhoanDichVu/DieuKhoanDichVu';
 import ForgotPW from './Pages/ForgotPW/ForgotPW';
 import './_Container.scss'
 import CartPage from './Pages/CartPage/CartPage';
+import Product from './Pages/Product/Product';
 function Container() {
     return ( 
         <div className='container'>
             <Routes>
-                <Route path='/' element = {<MainPage/>}></Route>
-                <Route path='/login' element = {<LoginPage/>}></Route>
-                <Route path='/register' element = {<RegisterPage/>}></Route>
-                <Route path='/forgotpw' element = {<ForgotPW/>}></Route>
-                <Route path='/about' element = {<AboutPage/>}></Route>
-                <Route path='/shop' element = {<ShopPage/>}></Route>
-                <Route path='/cart' element = {<CartPage/>}></Route>
-                <Route path='/chinh-sach-doi-tra' element = {<ChinhSachDoiTra/>}></Route>
-                <Route path='/chinh-sach-bao-mat' element = {<ChinhSachBaoMat/>}></Route>
-                <Route path='/dieu-khoan-dich-vu' element = {<DieuKhoanDichVu/>}></Route>
+                <Route path='/' element = {<MainPage/>}/>
+                <Route path='/login' element = {<LoginPage/>}/>
+                <Route path='/register' element = {<RegisterPage/>}/>
+                <Route path='/forgotpw' element = {<ForgotPW/>}/>
+                <Route path='/about' element = {<AboutPage/>}/>
+                <Route path='/product' element = {<Product/>}/>
+                <Route path='/shop' element = {<ShopPage/>}/>
+                <Route path='/cart' element = {<CartPage/>}/>
+                <Route path='/chinh-sach-doi-tra' element = {<ChinhSachDoiTra/>}/>
+                <Route path='/chinh-sach-bao-mat' element = {<ChinhSachBaoMat/>}/>
+                <Route path='/dieu-khoan-dich-vu' element = {<DieuKhoanDichVu/>}/>
             </Routes>
            
         </div>

@@ -56,28 +56,28 @@ function Card({ data }) {
                     <img
                       src={imgdetails1}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails2}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails3}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails4}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                 </Carousel>
