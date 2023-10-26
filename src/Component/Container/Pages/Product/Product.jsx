@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import sizeimg from '../../../../assets/img/size.jpeg'
 import imgdetails1 from "../../../../assets/img/515Kem-F.jpg";
 import imgdetails2 from "../../../../assets/img/515Kem-B.jpg";
 import imgdetails3 from "../../../../assets/img/4U3A0858.jpg";
@@ -61,12 +62,17 @@ function Product() {
                 </div>
                 <div className='quality'>
                         <label for="quanlity">Số lượng</label>
-                        <input id='quality' type="number" step={1}/>
+                        <input id='quality' type="number" min={0}/>
                 </div>
                 <Button variant="success" size="lg">
                     Add to cart
                 </Button>
                 </div>
+            </div>
+            <div className='description'>
+                <h1>description</h1>
+                
+                <img src={sizeimg} alt='sizeimg' width={500}></img>
             </div>
         </div>
     );

@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const apiURL = "https://fakestoreapi.com/products";
+const apiURL1 = "https://dummyjson.com/products";
 function Content() {
   const [data, setData] = useState([]);
   useEffect(() => {

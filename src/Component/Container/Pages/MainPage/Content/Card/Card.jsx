@@ -25,7 +25,7 @@ function Card({ data }) {
       onMouseLeave={() => {
         ref.current.src = data.image[0];
       }}
-    >
+    > 
       <img
         ref={ref}
         className="card-img-top img-product"
@@ -56,28 +56,28 @@ function Card({ data }) {
                     <img
                       src={imgdetails1}
                       alt="img-prod"
-                      className="img-show"
+                      className="img-123"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails2}
                       alt="img-prod"
-                      className="img-show"
+                      className="img-123"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails3}
                       alt="img-prod"
-                      className="img-show"
+                      className="img-123"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails4}
                       alt="img-prod"
-                      className="img-show"
+                      className="img-123"
                     ></img>
                   </Carousel.Item>
                 </Carousel>
