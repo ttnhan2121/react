@@ -69,7 +69,7 @@ function Header() {
                                     </svg>
                                 </div>
                                 <h5 className='text-cart'>Giỏ hàng đang trống</h5>
-                                <Link className='btn-body' to={'/'} role='button' onClick={handleClose} variant="secondary">Tiếp tục mua hàng</Link>
+                                <Link className='btn-body' to={'/shop'} role='button' onClick={handleClose} variant="secondary">Tiếp tục mua hàng</Link>
                             </Offcanvas.Body>
                         </Offcanvas>
                     </ul>

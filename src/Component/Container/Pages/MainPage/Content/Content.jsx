@@ -27,12 +27,12 @@ function Content() {
           {data.map((item, index) => {
             return (
               <div className="col-xxl-3 py-3 card-hover">
-                <Card
-                  data={{
-                    ...item,
-                    image: [item.image, data.reverse()[index].image],
-                  }}
-                />
+                    <Card 
+                      data={{
+                        ...item,
+                        image: [item.image, data.reverse()[index].image],
+                      }}
+                    />
               </div>
             );
           })}

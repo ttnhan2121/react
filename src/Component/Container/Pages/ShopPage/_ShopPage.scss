@@ -1,5 +1,24 @@
 .shoppage{
     padding-top: 60px;
+    .permissions{
+        display: flex;
+        margin-top: 20px;
+        .container-permissions{
+            flex: 1;
+            text-align: center;
+            .icon-permissions{
+                font-size: 3rem;
+                margin-bottom: 10px;
+            }
+            .title-permissions{
+            }
+            .content-permissions{
+                padding: 0 30px;
+                color: gray;
+                font-size: 1.2rem;
+            }
+        }
+    }
     .header-shop{
         display: flex;
         justify-content: space-between;
@@ -33,8 +52,15 @@
         height: auto;
         margin: 20px 0;
     }
-
+    .pagination{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     #dropdown-basic {
         width: 150px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 }

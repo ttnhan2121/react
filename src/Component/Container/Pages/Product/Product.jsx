@@ -1,6 +1,7 @@
 import './_Product.scss'
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
+import { useEffect    } from 'react';
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import sizeimg from '../../../../assets/img/size.jpeg'
@@ -9,6 +10,9 @@ import imgdetails2 from "../../../../assets/img/515Kem-B.jpg";
 import imgdetails3 from "../../../../assets/img/4U3A0858.jpg";
 import imgdetails4 from "../../../../assets/img/4U3A0876.jpg";
 function Product() {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
     return (  
         <div className='product'>
             <div className="bodyreview">

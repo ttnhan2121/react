@@ -9,9 +9,9 @@ import imgdetails1 from "../../../../../../assets/img/515Kem-F.jpg";
 import imgdetails2 from "../../../../../../assets/img/515Kem-B.jpg";
 import imgdetails3 from "../../../../../../assets/img/4U3A0858.jpg";
 import imgdetails4 from "../../../../../../assets/img/4U3A0876.jpg";
+import { Link } from "react-router-dom";
 
 function Card({ data }) {
-  console.log("data: ", data);
   const ref = useRef();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -26,25 +26,29 @@ function Card({ data }) {
         ref.current.src = data.image[0];
       }}
     > 
-      <img
-        ref={ref}
-        className="card-img-top img-product"
-        src={data.image[0]}
-        alt="Cardimagecap"
-        width={200}
-        height={200}
-      />
+      <Link to={'/product'}>
+        <img
+          ref={ref}
+          className="card-img-top img-product"
+          src={data.image[0]}
+          alt="Cardimagecap"
+          width={200}
+          height={200}
+        />
+      </Link>
       <button className="btn-quickview" onClick={handleShow}>
         Xem nhanh
       </button>
-      <div className="card-body">
-        <h5 className="card-title">Name Product</h5>
-        <p className="card-text">{}</p>
-        <p className="price">
-          <span className="price-left">{data.price}$</span>
-          <span className="price-right">200.000 vnd</span>
-        </p>
-      </div>
+      <Link to={'/product'} className="linkproduct">
+        <div className="card-body">
+          <h5 className="card-title">Name Product</h5>
+          <p className="card-text">{}</p>
+          <p className="price">
+            <span className="price-left">{data.price}$</span>
+            <span className="price-right">200.000 vnd</span>
+          </p>
+        </div>
+      </Link>
       <Modal centered="true" size="lg" show={show} onHide={handleClose}>
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
@@ -56,35 +60,40 @@ function Card({ data }) {
                     <img
                       src={imgdetails1}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails2}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails3}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
                       src={imgdetails4}
                       alt="img-prod"
-                      className="img-123"
+                      className="img-show"
                     ></img>
                   </Carousel.Item>
                 </Carousel>
               </div>
               <div className="pick-reivew">
                 <div className="pvBody">
-                  <img width={50} src={imgdetails1} alt=""></img>
+                  <img width={50} src={imgdetails1} alt=""
+                  onClick={(event) => {
+                    if (event.target.tagName === 'IMG') {
+                      console.log(event.target.src);
+                    }
+                  }}/>  
                   <img width={50} src={imgdetails2} alt=""></img>
                 </div>
               </div>
