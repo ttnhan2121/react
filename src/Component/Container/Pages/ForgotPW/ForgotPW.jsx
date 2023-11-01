@@ -24,7 +24,7 @@ function ForgotPW() {
           <Button className="btn-submit" variant="primary" type="submit">
             Khôi phục
           </Button>
-          <Link id='backtologin' to={'/login'} >Trở về đăng nhập</Link>
+          <Link id='backtologin' to={'/login'} >Đăng nhập</Link>
         </Form>
       </div>
     </div>

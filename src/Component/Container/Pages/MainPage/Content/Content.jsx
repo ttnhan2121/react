@@ -7,11 +7,11 @@ const apiURL = "https://fakestoreapi.com/products";
 const apiURL1 = "https://dummyjson.com/products";
 function Content() {
   const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(apiURL)
-      .then((res) => res.json())
-      .then((result) => setData(result));
-  }, []);
+  useEffect(() => { 
+    fetch(apiURL) 
+      .then((res) => res.json()) 
+      .then((result) => setData(result)) 
+      .catch((error) => {console.log(error); }); }, []);
   return (
     <div className="content min-vh-100 pt-3">
       <div className="container-fluid d-flex flex-column align-items-center">

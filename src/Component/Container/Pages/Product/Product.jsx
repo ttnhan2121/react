@@ -58,7 +58,7 @@ function Product() {
                         <ToggleButton variant="light" size="lg" id="sizeL" value={2}>
                         L
                         </ToggleButton>
-                        <ToggleButton variant="light" size="lg" id="sizeXL"value={3}>
+                        <ToggleButton variant="light" size="lg" id="sizeXL" value={3}>
                         XL
                         </ToggleButton>
                     </ToggleButtonGroup>

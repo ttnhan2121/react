@@ -141,6 +141,10 @@ function Card({ data }) {
                   </ToggleButtonGroup>
                 </div>
               </div>
+              <div className='quality'>
+                <label for="quanlity-1">Số lượng</label>
+                <input id='quality-1' type="number" min={0}/>
+              </div>
               <Button variant="success" size="lg">
                 Add to cart
               </Button>

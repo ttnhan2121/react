@@ -18,11 +18,11 @@ function ShopPage() {
     window.scrollTo(0, 0);
   }, []);
   const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch(apiURL)
-      .then((res) => res.json())
-      .then((result) => setData(result));
-  }, []);
+  useEffect(() => { 
+    fetch(apiURL) 
+      .then((res) => res.json()) 
+      .then((result) => setData(result)) 
+      .catch((error) => {console.log(error); }); }, []);
   return (
     <div className="shoppage">
       <div className="permissions">

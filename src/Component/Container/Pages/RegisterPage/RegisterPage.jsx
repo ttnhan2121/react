@@ -53,7 +53,7 @@ function RegisterPage() {
                     <Button className="btn-submit-signup" variant="primary" type="submit" onClick={handleSubmit}>
                         Đăng ký
                     </Button>
-                    <Link id='backtologin' to={'/login'} >Trở về đăng nhập</Link>
+                    <Link id='backtologin' to={'/login'} >Đăng nhập</Link>
                 </Form>
             </div>
         </Form>
