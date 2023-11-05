@@ -3,12 +3,12 @@ import Card from "./Card/Card";
 import "bootstrap/dist/css/bootstrap.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const apiURL = "https://fakestoreapi.com/products";
-const apiURL1 = "https://dummyjson.com/products";
+const apiURL = "https://fakestoreapi.codm/products";
+const apiURL1 = "http://localhost:8000/testdb";
 function Content() {
   const [data, setData] = useState([]);
   useEffect(() => { 
-    fetch(apiURL) 
+    fetch(apiURL1) 
       .then((res) => res.json()) 
       .then((result) => setData(result)) 
       .catch((error) => {console.log(error); }); }, []);
@@ -28,10 +28,11 @@ function Content() {
             return (
               <div className="col-xxl-3 py-3 card-hover">
                     <Card 
-                      data={{
-                        ...item,
-                        image: [item.image, data.reverse()[index].image],
-                      }}
+                      // data={{
+                      //   ...item,
+                      //   image: [item.image, data.reverse()[index].image],
+                      // }}
+                      data = {item}
                     />
               </div>
             );

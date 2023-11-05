@@ -7,6 +7,8 @@ import { faTruck, faRotate, faHandHoldingDollar, faPhoneVolume } from "@fortawes
 import Card from "../MainPage/Content/Card/Card";
 import Pagination from 'react-bootstrap/Pagination';
 const apiURL = "https://fakestoreapi.com/products";
+const apiURL1 = "http://localhost:8000/testdb";
+
 
 function ShopPage() {
   const [selectedItem, setSelectedItem] = useState("Sản phẩm nổi bật");
@@ -19,7 +21,7 @@ function ShopPage() {
   }, []);
   const [data, setData] = useState([]);
   useEffect(() => { 
-    fetch(apiURL) 
+    fetch(apiURL1,) 
       .then((res) => res.json()) 
       .then((result) => setData(result)) 
       .catch((error) => {console.log(error); }); }, []);

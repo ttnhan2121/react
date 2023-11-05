@@ -27,21 +27,22 @@ function Card({ data }) {
       }}
     > 
       <Link to={'/product'}>
-        <img
+        {/* <img
           ref={ref}
           className="card-img-top img-product"
           src={data.image[0]}
           alt="Cardimagecap"
           width={200}
           height={200}
-        />
+        /> */}
+        <img className="card-img-top img-product" src={data.image}></img>
       </Link>
       <button className="btn-quickview" onClick={handleShow}>
         Xem nhanh
       </button>
       <Link to={'/product'} className="linkproduct">
         <div className="card-body">
-          <h5 className="card-title">Name Product</h5>
+          <h5 className="card-title">{data.product_name}</h5>
           <p className="card-text">{}</p>
           <p className="price">
             <span className="price-left">{data.price}$</span>
