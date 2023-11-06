@@ -19,23 +19,23 @@ function Card({ data }) {
   return (
     <div
       className="card card-prop"
-      // onMouseEnter={() => {
-      //   ref.current.src = data.image[1];
-      // }}
-      // onMouseLeave={() => {
-      //   ref.current.src = data.image[0];
-      // }}
+      onMouseEnter={() => {
+        ref.current.src = data.image[1];
+      }}
+      onMouseLeave={() => {
+        ref.current.src = data.image[0];
+      }}
     > 
       <Link to={'/product'}>
-        {/* <img
+        <img
           ref={ref}
           className="card-img-top img-product"
           src={data.image[0]}
           alt="Cardimagecap"
           width={200}
           height={200}
-        /> */}
-        <img className="card-img-top img-product" src={data.image}></img>
+        />
+        {/* <img className="card-img-top img-product" src={data.image}></img> */}
       </Link>
       <button className="btn-quickview" onClick={handleShow}>
         Xem nhanh

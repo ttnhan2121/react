@@ -3,11 +3,13 @@ const mysql = require('mysql2')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const path = require('path')
 const app = express()
 const port = 8000
 
 
 
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -15,7 +17,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   port: '3307',
   user: 'root',
-  password: '123!@#',
+  password: '123456',
   database: 'db_area515'
 });
 connection.connect((err) => {
@@ -39,12 +41,6 @@ connection.query(
     })
   },
   );
-
-// app.get('/',(req,res) =>{
-//   res.send('123')
-// })
-
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
