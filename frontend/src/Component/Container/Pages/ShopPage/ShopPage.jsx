@@ -21,7 +21,7 @@ function ShopPage() {
   }, []);
   const [data, setData] = useState([]);
   useEffect(() => { 
-    fetch(apiURL1,) 
+    fetch(apiURL1) 
       .then((res) => res.json()) 
       .then((result) => setData(result)) 
       .catch((error) => {console.log(error); }); }, []);
@@ -93,10 +93,11 @@ function ShopPage() {
             return (
               <div className="col-xxl-3 py-3 card-hover">
                 <Card
-                  data={{
-                    ...item,
-                    image: [item.image, data.reverse()[index].image],
-                  }}
+                  // data={{
+                  //   ...item,
+                  //   image: [item.image, data.reverse()[index].image],
+                  // }}
+                  data = {item}
                 />
               </div>
             );

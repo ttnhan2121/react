@@ -19,12 +19,12 @@ function Card({ data }) {
   return (
     <div
       className="card card-prop"
-      onMouseEnter={() => {
-        ref.current.src = data.image[1];
-      }}
-      onMouseLeave={() => {
-        ref.current.src = data.image[0];
-      }}
+      // onMouseEnter={() => {
+      //   ref.current.src = data.image[1];
+      // }}
+      // onMouseLeave={() => {
+      //   ref.current.src = data.image[0];
+      // }}
     > 
       <Link to={'/product'}>
         {/* <img

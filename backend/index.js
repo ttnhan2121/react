@@ -8,14 +8,14 @@ const port = 8000
 
 
 
-// app.use(cors)
-// app.use(bodyParser.json())
+app.use(cors())
+app.use(bodyParser.json())
 
 const connection = mysql.createConnection({
   host: 'localhost',
   port: '3307',
   user: 'root',
-  password: '123456',
+  password: '123!@#',
   database: 'db_area515'
 });
 connection.connect((err) => {
@@ -28,7 +28,7 @@ connection.connect((err) => {
   }
 })
 connection.query(
-  'SELECT * FROM `test` LIMIT 10', (err, result) => {
+  'SELECT * FROM `test` LIMIT 100', (err, result) => {
     if(err){
       console.log(err)
       connection.end
