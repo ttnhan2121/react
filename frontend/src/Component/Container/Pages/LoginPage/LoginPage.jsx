@@ -36,7 +36,7 @@ function LoginPage() {
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Ghi nhớ tài khoản" />
               </Form.Group>
-              <Button className="btn-submit" variant="primary" type="submit" >
+              <Button className="btn-submit" variant="primary" type="submit">
                 Submit
               </Button>
               <p className="py-3"><Link to={'/forgotpw'} className="underline-text">Quên mật khẩu</Link> Hoặc <Link to={'/register'} className="underline-text">Đăng ký</Link></p>

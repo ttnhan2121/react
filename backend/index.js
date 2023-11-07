@@ -17,7 +17,7 @@ const connection = mysql.createConnection({
   host: 'localhost',
   port: '3307',
   user: 'root',
-  password: '123456',
+  password: '123!@#',
   database: 'db_area515'
 });
 connection.connect((err) => {
@@ -30,7 +30,7 @@ connection.connect((err) => {
   }
 })
 connection.query(
-  'SELECT * FROM `test` LIMIT 100', (err, result) => {
+  'SELECT * FROM `testtable` LIMIT 100', (err, result) => {
     if(err){
       console.log(err)
       connection.end
@@ -42,6 +42,6 @@ connection.query(
   },
   );
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`Example app listening on port http://localhost:${port}/testdb`)
 })
 

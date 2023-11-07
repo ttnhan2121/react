@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck, faRotate, faHandHoldingDollar, faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
 import Card from "../MainPage/Content/Card/Card";
 import Pagination from 'react-bootstrap/Pagination';
-const apiURL = "https://fakestoreapi.com/products";
-const apiURL1 = "http://localhost:8000/testdb";
+const apiURL = "http://localhost:8000/testdb";
 
 
 function ShopPage() {
@@ -21,7 +20,7 @@ function ShopPage() {
   }, []);
   const [data, setData] = useState([]);
   useEffect(() => { 
-    fetch(apiURL1) 
+    fetch(apiURL) 
       .then((res) => res.json()) 
       .then((result) => setData(result)) 
       .catch((error) => {console.log(error); }); }, []);
@@ -89,14 +88,10 @@ function ShopPage() {
       </div>
       <div className="list-product">
         <div className="row">
-          {data.map((item, index) => {
+          {data.map((item) => {
             return (
               <div className="col-xxl-3 py-3 card-hover">
                 <Card
-                  // data={{
-                  //   ...item,
-                  //   image: [item.image, data.reverse()[index].image],
-                  // }}
                   data = {item}
                 />
               </div>

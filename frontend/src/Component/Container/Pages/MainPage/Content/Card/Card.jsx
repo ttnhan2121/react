@@ -5,10 +5,6 @@ import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
-import imgdetails1 from "../../../../../../assets/img/515Kem-F.jpg";
-import imgdetails2 from "../../../../../../assets/img/515Kem-B.jpg";
-import imgdetails3 from "../../../../../../assets/img/4U3A0858.jpg";
-import imgdetails4 from "../../../../../../assets/img/4U3A0876.jpg";
 import { Link } from "react-router-dom";
 
 function Card({ data }) {
@@ -26,7 +22,7 @@ function Card({ data }) {
         ref.current.src = data.image[0];
       }}
     > 
-      <Link to={'/product'}>
+      <Link to={`/product/${data.id}`}>
         <img
           ref={ref}
           className="card-img-top img-product"
@@ -40,13 +36,13 @@ function Card({ data }) {
       <button className="btn-quickview" onClick={handleShow}>
         Xem nhanh
       </button>
-      <Link to={'/product'} className="linkproduct">
+      <Link to={`/product/${data.id}`} className="linkproduct">
         <div className="card-body">
           <h5 className="card-title">{data.product_name}</h5>
           <p className="card-text">{}</p>
           <p className="price">
-            <span className="price-left">{data.price}$</span>
-            <span className="price-right">200.000 vnd</span>
+            <span className="price-left">{data.price} VNĐ</span>
+            <span className="price-right">320.000 VNĐ</span>
           </p>
         </div>
       </Link>
@@ -59,52 +55,41 @@ function Card({ data }) {
                 <Carousel>
                   <Carousel.Item>
                     <img
-                      src={imgdetails1}
+                      src={data.image[0]}
                       alt="img-prod"
                       className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
-                      src={imgdetails2}
+                      src={data.image[1]}
                       alt="img-prod"
                       className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
-                      src={imgdetails3}
+                      src={data.image[2]}
                       alt="img-prod"
                       className="img-show"
                     ></img>
                   </Carousel.Item>
                   <Carousel.Item>
                     <img
-                      src={imgdetails4}
+                      src={data.image[3]}
                       alt="img-prod"
                       className="img-show"
                     ></img>
                   </Carousel.Item>
                 </Carousel>
               </div>
-              <div className="pick-reivew">
-                <div className="pvBody">
-                  <img width={50} src={imgdetails1} alt=""
-                  onClick={(event) => {
-                    if (event.target.tagName === 'IMG') {
-                      console.log(event.target.src);
-                    }
-                  }}/>  
-                  <img width={50} src={imgdetails2} alt=""></img>
-                </div>
-              </div>
             </div>
             <div className="details-prod">
               <div className="name-prod">
-                <h1>Name Prod</h1>
+                <h1>{data.product_name}</h1>
               </div>
               <div className="price-prod">
-                <span className="price-left">199.000 vnd</span>
+                <span className="price-left">{data.price} VNĐ</span>
                 <span className="price-right">320.000 vnd</span>
               </div>
               <div className="size-prod">
