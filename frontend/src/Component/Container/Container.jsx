@@ -20,7 +20,7 @@ function Container() {
                 <Route path='/register' element = {<RegisterPage/>}/>
                 <Route path='/forgotpw' element = {<ForgotPW/>}/>
                 <Route path='/about' element = {<AboutPage/>}/>
-                <Route path='/product' element = {<Product/>}/>
+                <Route path='/product/:id' element = {<Product/>}/>
                 <Route path='/shop' element = {<ShopPage/>}/>
                 <Route path='/cart' element = {<CartPage/>}/>
                 <Route path='/chinh-sach-doi-tra' element = {<ChinhSachDoiTra/>}/>

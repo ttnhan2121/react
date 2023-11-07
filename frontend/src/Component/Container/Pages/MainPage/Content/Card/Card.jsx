@@ -12,6 +12,9 @@ function Card({ data }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleLinkClick = () => {
+    localStorage.setItem('productId', data.id);
+  };
   return (
     <div
       className="card card-prop"
@@ -22,7 +25,7 @@ function Card({ data }) {
         ref.current.src = data.image[0];
       }}
     > 
-      <Link to={`/product/${data.id}`}>
+      <Link to={`/product/${data.id}`} onClick={handleLinkClick}>
         <img
           ref={ref}
           className="card-img-top img-product"
@@ -31,12 +34,11 @@ function Card({ data }) {
           width={200}
           height={200}
         />
-        {/* <img className="card-img-top img-product" src={data.image}></img> */}
       </Link>
       <button className="btn-quickview" onClick={handleShow}>
         Xem nhanh
       </button>
-      <Link to={`/product/${data.id}`} className="linkproduct">
+      <Link to={`/product/${data.id}`} className="linkproduct" onClick={handleLinkClick}>
         <div className="card-body">
           <h5 className="card-title">{data.product_name}</h5>
           <p className="card-text">{}</p>
@@ -98,8 +100,16 @@ function Card({ data }) {
                   <ToggleButtonGroup
                     type="radio"
                     name="options"
-                    defaultValue={1}
+                    defaultValue={0}
                   >
+                    <ToggleButton
+                      variant="light"
+                      size="lg"
+                      id="sizeS"
+                      value={0}
+                    >
+                      S
+                    </ToggleButton>
                     <ToggleButton
                       variant="light"
                       size="lg"
@@ -128,8 +138,8 @@ function Card({ data }) {
                 </div>
               </div>
               <div className='quality'>
-                <label for="quanlity-1">Số lượng</label>
-                <input id='quality-1' type="number" min={0}/>
+                <label htmlFor="quanlity-1">Số lượng</label>
+                <input id='quality-1' type="number" min={0} defaultValue={0}/>
               </div>
               <Button variant="success" size="lg">
                 Add to cart

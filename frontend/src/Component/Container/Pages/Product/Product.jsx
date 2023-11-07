@@ -1,15 +1,27 @@
 import './_Product.scss'
 import "bootstrap/dist/css/bootstrap.css";
 import Carousel from "react-bootstrap/Carousel";
-import { useEffect    } from 'react';
+import { useEffect, useState} from 'react';
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import sizeimg from '../../../../assets/img/size.jpeg'
-import imgdetails1 from "../../../../assets/img/515Kem-F.jpg";
-import imgdetails2 from "../../../../assets/img/515Kem-B.jpg";
-import imgdetails3 from "../../../../assets/img/4U3A0858.jpg";
-import imgdetails4 from "../../../../assets/img/4U3A0876.jpg";
 function Product() {
+    const [data, setData] = useState([]);
+    const productId = localStorage.getItem('productId');
+
+    useEffect(() => {
+        const fetchData = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/product/${productId}`);
+            const result = await response.json();
+            setData(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+        };
+
+        fetchData();
+    }, [productId]);
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);
@@ -18,40 +30,30 @@ function Product() {
             <div className="bodyreview">
                 <div className="main-review">
                 <div className="review-slideshow">
-                    <Carousel>
-                    <Carousel.Item>
-                        <img src={imgdetails1} alt="img-prod" className="img-product"></img>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img src={imgdetails2} alt="img-prod" className="img-product"></img>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img src={imgdetails3} alt="img-prod" className="img-product"></img>
-                    </Carousel.Item>
-                    <Carousel.Item> 
-                        <img src={imgdetails4} alt="img-prod" className="img-product"></img>
-                    </Carousel.Item>
+                    <Carousel data-bs-theme="dark">
+                        {data.image?.map((image, index) => (
+                            <Carousel.Item key={index}>
+                            <img src={image} alt={`img-prod-${index}`} className="img-product"></img>
+                            </Carousel.Item>
+                        ))}
                     </Carousel>
-                </div>
-                <div className="pick-reivew">
-                    <div className="pvBody">
-                    <img width={50} src={imgdetails1} alt=""></img>
-                    <img width={50} src={imgdetails2} alt=""></img>
-                    </div>
                 </div>
                 </div>
                 <div className="details-prod">
                 <div className="name-prod">
-                    <h1>Name Prod</h1>
+                    <h1>{data.product_name}</h1>
                 </div>
                 <div className="price-prod">
-                    <span className="price-left">199.000 vnd</span>
+                    <span className="price-left">{data.price} VNĐ</span>
                     <span className="price-right">320.000 vnd</span>
                 </div>
                 <div className="size-prod">
                     <label>Kích thước: </label>
                     <div className="size-details">
-                    <ToggleButtonGroup type="radio" name="options" defaultValue={1}>
+                    <ToggleButtonGroup type="radio" name="options" defaultValue={0}>
+                        <ToggleButton variant="light" size="lg" id="sizeS" value={0}>
+                        S
+                        </ToggleButton>
                         <ToggleButton variant="light" size="lg" id="sizeM" value={1}>
                         M
                         </ToggleButton>
@@ -65,8 +67,8 @@ function Product() {
                     </div>
                 </div>
                 <div className='quality'>
-                        <label for="quanlity">Số lượng</label>
-                        <input id='quality' type="number" min={0}/>
+                        <label htmlFor="quanlity">Số lượng</label>
+                        <input id='quality' type="number" min={0} defaultValue={0}/>
                 </div>
                 <Button variant="success" size="lg">
                     Add to cart
@@ -74,8 +76,13 @@ function Product() {
                 </div>
             </div>
             <div className='description'>
-                <h1>description</h1>
-                
+                <h1>Mô tả</h1>
+                <div className='content'>
+                    <p>
+                        {data.description}
+                    </p>
+                </div>
+                <h1>Hướng dẫn chọn Size</h1>
                 <img src={sizeimg} alt='sizeimg' width={500}></img>
             </div>
         </div>

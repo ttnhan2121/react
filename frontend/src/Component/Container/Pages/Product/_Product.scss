@@ -4,6 +4,14 @@
     font-size: 1.5rem;
     .description{
         margin-top: 40px;
+        .content{
+            white-space: wrap;
+            color: rgba(0,0,0,.8);
+            font-size: .875rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.7;
+        }
     }
 }
 

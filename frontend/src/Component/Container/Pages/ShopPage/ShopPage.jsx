@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTruck, faRotate, faHandHoldingDollar, faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
 import Card from "../MainPage/Content/Card/Card";
 import Pagination from 'react-bootstrap/Pagination';
-const apiURL = "http://localhost:8000/testdb";
+const apiURL = "http://localhost:8000/product";
 
 
 function ShopPage() {
