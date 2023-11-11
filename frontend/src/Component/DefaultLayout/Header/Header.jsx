@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import "./_Header.scss"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Logo515 from '../../../assets/img/icon515.png'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
@@ -9,6 +9,16 @@ function Header() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [login, setLogin] = useState("/login");
+    useEffect(() => {
+        const storedLogin = true;
+
+        if (storedLogin === true) {
+            setLogin("/user");
+        } else {
+            setLogin("/login");
+        }
+    }, [login]);
     return ( 
         <header className="header">
             <div className="grid">
@@ -39,7 +49,7 @@ function Header() {
                             <path fillRule="evenodd" clipRule="evenodd" d="M4.00244 10.5815C4.00244 6.70046 7.16044 3.54346 11.0414 3.54346C14.9214 3.54346 18.0794 6.70046 18.0794 10.5815C18.0794 14.4625 14.9214 17.6205 11.0414 17.6205C7.16044 17.6205 4.00244 14.4625 4.00244 10.5815ZM22.4974 21.0405L17.8984 16.4535C19.2544 14.8725 20.0794 12.8235 20.0794 10.5815C20.0794 5.59846 16.0244 1.54346 11.0414 1.54346C6.05744 1.54346 2.00244 5.59846 2.00244 10.5815C2.00244 15.5655 6.05744 19.6205 11.0414 19.6205C13.0634 19.6205 14.9264 18.9445 16.4334 17.8175L21.0854 22.4565L22.4974 21.0405Z" fill="#0F5BFF"/>
                             </svg>
                         </span>
-                        <Link to = {'/login'}>
+                        <Link to = {login}>
                             <svg width="27" height="27" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M17.294 7.29117C17.294 10.2282 14.9391 12.5832 12 12.5832C9.0619 12.5832 6.70601 10.2282 6.70601 7.29117C6.70601 4.35415 9.0619 2.00012 12 2.00012C14.9391 2.00012 17.294 4.35415 17.294 7.29117ZM12 22.0001C7.66237 22.0001 4 21.2951 4 18.5751C4 15.8541 7.68538 15.1741 12 15.1741C16.3386 15.1741 20 15.8791 20 18.5991C20 21.3201 16.3146 22.0001 12 22.0001Z" fill="#0F5BFF"/>
                             </svg>

@@ -1,11 +1,12 @@
 import "./_Card.scss";
 import "bootstrap/dist/css/bootstrap.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Form from 'react-bootstrap/Form';
 function Card({ data }) {
   const ref = useRef();
   const [show, setShow] = useState(false);
@@ -53,35 +54,12 @@ function Card({ data }) {
           <div className="bodyreview">
             <div className="main-review">
               <div className="review-slideshow">
-                <Carousel>
-                  <Carousel.Item>
-                    <img
-                      src={data.image[0]}
-                      alt="img-prod"
-                      className="img-show"
-                    ></img>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      src={data.image[1]}
-                      alt="img-prod"
-                      className="img-show"
-                    ></img>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      src={data.image[2]}
-                      alt="img-prod"
-                      className="img-show"
-                    ></img>
-                  </Carousel.Item>
-                  <Carousel.Item>
-                    <img
-                      src={data.image[3]}
-                      alt="img-prod"
-                      className="img-show"
-                    ></img>
-                  </Carousel.Item>
+                <Carousel data-bs-theme="dark">
+                  {data.image?.map((image, index) => (
+                      <Carousel.Item key={index}>
+                      <img src={image} alt={`img-prod-${index}`} className="img-product"></img>
+                      </Carousel.Item>
+                  ))}
                 </Carousel>
               </div>
             </div>
@@ -137,8 +115,8 @@ function Card({ data }) {
                 </div>
               </div>
               <div className='quality'>
-                <label htmlFor="quanlity-1">Số lượng</label>
-                <input id='quality-1' type="number" min={0} defaultValue={0}/>
+                <Form.Label htmlFor="quanlity-1">Số lượng</Form.Label>
+                <Form.Control id="quality-1" type="number" min={0} defaultValue={0}/>
               </div>
               <Button variant="success" size="lg">
                 Add to cart

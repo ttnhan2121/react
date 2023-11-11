@@ -1,0 +1,45 @@
+.user{
+    margin-top: 100px;
+    margin-bottom: 40px;
+    .header-user{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        .process{
+            width: 30%;
+            height: 0.5rem;
+        }
+    }
+    .body-user{
+        display: flex;
+        height: 300px;
+        margin-top: 15px;
+        .purchased{
+            flex: 6;
+            border: 1px solid rgb(209, 189, 189);
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 20px;
+            #table-purchased{
+                width: 100%;
+                font-size: 1.5rem;
+            }
+        }
+        .address{
+            flex: 4;
+            border: 1px solid rgb(209, 189, 189);
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 20px;
+            #user-info{
+                width: 100%;
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
