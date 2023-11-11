@@ -1,12 +1,11 @@
 import "./_Card.scss";
 import "bootstrap/dist/css/bootstrap.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
 function Card({ data }) {
   const ref = useRef();
   const [show, setShow] = useState(false);
