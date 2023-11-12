@@ -1,9 +1,12 @@
 import './_Product.scss'
 import "bootstrap/dist/css/bootstrap.css";
+import Form from 'react-bootstrap/Form';
 import Carousel from "react-bootstrap/Carousel";
 import { useEffect, useState} from 'react';
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { connect } from "react-redux";
+import {actFetchProductsRequest,AddCart} from '../../../../action/action'
 import sizeimg from '../../../../assets/img/size.jpeg'
 function Product() {
     const [data, setData] = useState([]);
@@ -47,33 +50,69 @@ function Product() {
                     <span className="price-left">{data.price} VNĐ</span>
                     <span className="price-right">320.000 vnd</span>
                 </div>
-                <div className="size-prod">
-                    <label>Kích thước: </label>
-                    <div className="size-details">
-                    <ToggleButtonGroup type="radio" name="options" defaultValue={0}>
-                        <ToggleButton variant="light" size="lg" id="sizeS" value={0}>
-                        S
-                        </ToggleButton>
-                        <ToggleButton variant="light" size="lg" id="sizeM" value={1}>
-                        M
-                        </ToggleButton>
-                        <ToggleButton variant="light" size="lg" id="sizeL" value={2}>
-                        L
-                        </ToggleButton>
-                        <ToggleButton variant="light" size="lg" id="sizeXL" value={3}>
-                        XL
-                        </ToggleButton>
-                    </ToggleButtonGroup>
-                    </div>
-                </div>
-                <div className='quality'>
-                        <label htmlFor="quanlity">Số lượng</label>
-                        <input id='quality' type="number" min={0} defaultValue={0}/>
-                </div>
-                <Button variant="success" size="lg">
-                    Add to cart
-                </Button>
-                </div>
+                <table>
+                <tr>
+                  <td>
+                    Kích thước:
+                  </td>
+                  <td>
+                  <ToggleButtonGroup
+                    type="radio"
+                    name="options"
+                    defaultValue={0}
+                  >
+                    <ToggleButton
+                      variant="light"
+                      size="lg"
+                      id="sizeS"
+                      value={0}
+                    >
+                      S
+                    </ToggleButton>
+                    <ToggleButton
+                      variant="light"
+                      size="lg"
+                      id="sizeM"
+                      value={1}
+                    >
+                      M
+                    </ToggleButton>
+                    <ToggleButton
+                      variant="light"
+                      size="lg"
+                      id="sizeL"
+                      value={2}
+                    >
+                      L
+                    </ToggleButton>
+                    <ToggleButton
+                      variant="light"
+                      size="lg"
+                      id="sizeXL"
+                      value={3}
+                    >
+                      XL
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Số lượng:
+                  </td>
+                  <td>
+                    <Form.Control id="quality-1" type="number" min={0} defaultValue={0}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Button variant="success" size="lg" onClick={() => this.props.AddCart(data)}>
+                      Add to cart
+                    </Button>
+                  </td>
+                </tr>
+              </table>
+            </div>
             </div>
             <div className='description'>
                 <h1>Mô tả</h1>
@@ -88,5 +127,16 @@ function Product() {
         </div>
     );
 }
-
-export default Product;
+const mapStateToProps = state =>{
+  return {
+       _products: state._todoProduct,
+     };
+}
+function mapDispatchToProps(dispatch){
+  return{
+      actFetchProductsRequest:()=>dispatch(actFetchProductsRequest()),
+      AddCart:item=>dispatch(AddCart(item))
+   
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Product)

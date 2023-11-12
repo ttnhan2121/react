@@ -25,7 +25,7 @@ function Content() {
         <div className="row">
           {data.map((item, index) => {
             return (
-              <div className="col-xxl-3 py-3 card-hover">
+              <div className="col-xxl-3 py-3 card-hover " key={item.id}>
                     <Card 
                       data = {item}
                     />

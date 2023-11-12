@@ -115,8 +115,11 @@
     margin:0;
     border-radius: 10px;
 }
-
+table tr td{
+    padding: 5px;
+    min-width: 50px;
+    font-size: 1.5rem;
+}
 #quality-1{
-    margin-left: 17px;
-    width: 94px;
+    width: 123px;
 }

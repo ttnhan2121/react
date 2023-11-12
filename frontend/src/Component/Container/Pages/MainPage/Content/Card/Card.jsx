@@ -6,8 +6,10 @@ import Carousel from "react-bootstrap/Carousel";
 import { Button } from "react-bootstrap";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import {actFetchProductsRequest,AddCart} from '../../../../../../action/action'
 import Form from 'react-bootstrap/Form';
-function Card({ data }) {
+function Card({ data, AddCart }) {
   const ref = useRef();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -71,9 +73,12 @@ function Card({ data }) {
                 <span className="price-left">{data.price} VNĐ</span>
                 <span className="price-right">320.000 vnd</span>
               </div>
-              <div className="size-prod">
-                <label>Kích thước: </label>
-                <div className="size-details">
+              <table>
+                <tr>
+                  <td>
+                    Kích thước:
+                  </td>
+                  <td>
                   <ToggleButtonGroup
                     type="radio"
                     name="options"
@@ -112,15 +117,24 @@ function Card({ data }) {
                       XL
                     </ToggleButton>
                   </ToggleButtonGroup>
-                </div>
-              </div>
-              <div className='quality'>
-                <Form.Label htmlFor="quanlity-1">Số lượng</Form.Label>
-                <Form.Control id="quality-1" type="number" min={0} defaultValue={0}/>
-              </div>
-              <Button variant="success" size="lg">
-                Add to cart
-              </Button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    Số lượng:
+                  </td>
+                  <td>
+                    <Form.Control id="quality-1" type="number" min={0} defaultValue={0}/>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <Button variant="success" size="lg" onClick={() => {AddCart(data); console.log('AddCart: ', AddCart);}}>
+                      Add to cart
+                    </Button>
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
         </Modal.Body>
@@ -128,5 +142,16 @@ function Card({ data }) {
     </div>
   );
 }
-
-export default Card;
+const mapStateToProps = state =>{
+  return {
+       _products: state._todoProduct,
+     };
+}
+function mapDispatchToProps(dispatch){
+  return{
+      actFetchProductsRequest:()=>dispatch(actFetchProductsRequest()),
+      AddCart:data=>dispatch(AddCart(data))
+   
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Card)
