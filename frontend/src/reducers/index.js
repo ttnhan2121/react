@@ -26,7 +26,9 @@ function todoProduct(state = initProduct,action){
                 product_name: action.payload.product_name,
                 image: action.payload.image,
                 price: action.payload.price,
+                size: action.payload.size
                 };
+                console.log('cart: ', cart);
                 state.Carts.push(cart);
             } else {
                 let existingCartItem = state.Carts.find(
@@ -42,6 +44,7 @@ function todoProduct(state = initProduct,action){
                     product_name: action.payload.product_name,
                     image: action.payload.image,
                     price: action.payload.price,
+                    size: action.payload.size
                 };
                 state.Carts.push(newCartItem);
                 }

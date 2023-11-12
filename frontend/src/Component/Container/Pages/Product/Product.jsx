@@ -8,7 +8,7 @@ import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { connect } from "react-redux";
 import {actFetchProductsRequest,AddCart} from '../../../../action/action'
 import sizeimg from '../../../../assets/img/size.jpeg'
-function Product() {
+function Product({AddCart}) {
     const [data, setData] = useState([]);
     const productId = localStorage.getItem('productId');
 
@@ -106,7 +106,7 @@ function Product() {
                 </tr>
                 <tr>
                   <td>
-                    <Button variant="success" size="lg" onClick={() => this.props.AddCart(data)}>
+                    <Button variant="success" size="lg" onClick={() => AddCart(data)}>
                       Add to cart
                     </Button>
                   </td>

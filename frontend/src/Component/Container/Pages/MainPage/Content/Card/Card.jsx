@@ -17,6 +17,12 @@ function Card({ data, AddCart }) {
   const handleLinkClick = () => {
     localStorage.setItem('productId', data.id);
   };
+  const [selectedValue, setSelectedValue] = useState(0);
+
+  const handleOptionChange = (value) => {
+    setSelectedValue(value);
+  };
+
   return (
     <div
       className="card card-prop"
@@ -83,6 +89,8 @@ function Card({ data, AddCart }) {
                     type="radio"
                     name="options"
                     defaultValue={0}
+                    value={selectedValue}
+                    onChange={handleOptionChange}
                   >
                     <ToggleButton
                       variant="light"
@@ -129,7 +137,7 @@ function Card({ data, AddCart }) {
                 </tr>
                 <tr>
                   <td>
-                    <Button variant="success" size="lg" onClick={() => {AddCart(data); console.log('AddCart: ', AddCart);}}>
+                    <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})}>
                       Add to cart
                     </Button>
                   </td>
