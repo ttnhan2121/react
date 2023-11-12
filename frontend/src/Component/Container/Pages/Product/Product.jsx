@@ -1,6 +1,5 @@
 import './_Product.scss'
 import "bootstrap/dist/css/bootstrap.css";
-import Form from 'react-bootstrap/Form';
 import Carousel from "react-bootstrap/Carousel";
 import { useEffect, useState} from 'react';
 import { Button } from "react-bootstrap";
@@ -94,14 +93,6 @@ function Product({AddCart}) {
                       XL
                     </ToggleButton>
                   </ToggleButtonGroup>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Số lượng:
-                  </td>
-                  <td>
-                    <Form.Control id="quality-1" type="number" min={0} defaultValue={0}/>
                   </td>
                 </tr>
                 <tr>

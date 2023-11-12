@@ -8,7 +8,6 @@ import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {actFetchProductsRequest,AddCart} from '../../../../../../action/action'
-import Form from 'react-bootstrap/Form';
 function Card({ data, AddCart }) {
   const ref = useRef();
   const [show, setShow] = useState(false);
@@ -51,7 +50,7 @@ function Card({ data, AddCart }) {
           <h5 className="card-title">{data.product_name}</h5>
           <p className="card-text">{}</p>
           <p className="price">
-            <span className="price-left">{data.price} VNĐ</span>
+            <span className="price-left">{Number(data.price).toLocaleString('it-IT', {style: 'currency', currency: 'VND'})}</span>
             <span className="price-right">320.000 VNĐ</span>
           </p>
         </div>
@@ -63,11 +62,12 @@ function Card({ data, AddCart }) {
             <div className="main-review">
               <div className="review-slideshow">
                 <Carousel data-bs-theme="dark">
-                  {data.image?.map((image, index) => (
+                  {Array.isArray(data.image) &&
+                    data.image.map((image, index) => (
                       <Carousel.Item key={index}>
-                      <img src={image} alt={`img-prod-${index}`} className="img-product"></img>
+                        <img src={image} alt={`img-prod-${index}`} className="img-product" />
                       </Carousel.Item>
-                  ))}
+                    ))}
                 </Carousel>
               </div>
             </div>
@@ -76,8 +76,8 @@ function Card({ data, AddCart }) {
                 <h1>{data.product_name}</h1>
               </div>
               <div className="price-prod">
-                <span className="price-left">{data.price} VNĐ</span>
-                <span className="price-right">320.000 vnd</span>
+                <span className="price-left">{Number(data.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
+                <span className="price-right">320.000 VND</span>
               </div>
               <table>
                 <tr>
@@ -125,14 +125,6 @@ function Card({ data, AddCart }) {
                       XL
                     </ToggleButton>
                   </ToggleButtonGroup>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    Số lượng:
-                  </td>
-                  <td>
-                    <Form.Control id="quality-1" type="number" min={0} defaultValue={0}/>
                   </td>
                 </tr>
                 <tr>

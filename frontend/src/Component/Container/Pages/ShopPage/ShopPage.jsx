@@ -88,9 +88,9 @@ function ShopPage() {
       </div>
       <div className="list-product">
         <div className="row">
-          {data.map((item) => {
+          {data.map((item, index) => {
             return (
-              <div className="col-xxl-3 py-3 card-hover">
+              <div className="col-xxl-3 py-3 card-hover" key={index}>
                 <Card
                   data = {item}
                 />

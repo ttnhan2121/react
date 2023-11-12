@@ -32,7 +32,7 @@ function todoProduct(state = initProduct,action){
                 state.Carts.push(cart);
             } else {
                 let existingCartItem = state.Carts.find(
-                (item) => item.id === action.payload.id
+                (item) => (item.id && item.size) === (action.payload.id && action.payload.size)
                 );
             
                 if (existingCartItem) {

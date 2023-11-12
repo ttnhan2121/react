@@ -2,10 +2,10 @@ import './_CartPage.scss'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useState,useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import { connect } from "react-redux";
 import { IncreaseQuantity, DecreaseQuantity, DeleteCart } from "../../../../action/action";
 
-const price = 299000;
 function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
     let ListCart = [];
     let TotalCart = 0;
@@ -14,10 +14,12 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
         ListCart.push(items.Carts[item]);
     });
     function TotalPrice(price, tonggia) {
-        return Number(price * tonggia).toLocaleString("en-US");
+        return Number(price * tonggia).toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
     }
     const [now, setNow] = useState(0);
-
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     useEffect(() => {
         const interval = setInterval(() => {
         setNow(prevNow => {
@@ -40,9 +42,9 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
                 <div className='details-cart'>
                     <table className='table-cart'>
                         <tr>
-                            <th id='product'>Sản phẩm</th>
-                            <th id='quality'>Số lượng</th>
-                            <th id='price'>Tổng</th>
+                            <td id='product'>Sản phẩm</td>
+                            <td id='quality'>Số lượng</td>
+                            <td id='price'>Tổng</td>
                         </tr>
                         {ListCart.map((item, key) => {
                             var size ="";
@@ -64,15 +66,17 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
                                             </div>
                                             <div className='details-product'>
                                                 <a href='/' alt='href-product'>{item.product_name}</a>
-                                                <p>{size}</p>
-                                                <p>{item.price}</p>
+                                                <p>Size: {size}</p>
+                                                <p>{Number(item.price).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td id='quality'>
-                                        <Form.Control type="number" defaultValue={item.quantity} min={0}/>
+                                    <td>
+                                        <Button variant="light" style={{margin:'2px'}} onClick={()=>DecreaseQuantity(key)}>-</Button>
+                                        <Button variant='light'>{item.quantity}</Button>
+                                        <Button variant="light" style={{margin:'2px'}} onClick={()=>IncreaseQuantity(key)}>+</Button>
                                     </td>
-                                    <td id='price'>{(item.price*item.quantity).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</td>
+                                    <td id='price'>{TotalPrice(item.price,item.quantity)}</td>
                                 </tr>
                             );
                         })}
