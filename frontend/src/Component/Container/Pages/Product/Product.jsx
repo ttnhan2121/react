@@ -10,7 +10,11 @@ import sizeimg from '../../../../assets/img/size.jpeg'
 function Product({AddCart}) {
     const [data, setData] = useState([]);
     const productId = localStorage.getItem('productId');
+    const [selectedValue, setSelectedValue] = useState(0);
 
+    const handleOptionChange = (value) => {
+      setSelectedValue(value);
+    };
     useEffect(() => {
         const fetchData = async () => {
         try {
@@ -59,6 +63,8 @@ function Product({AddCart}) {
                     type="radio"
                     name="options"
                     defaultValue={0}
+                    value={selectedValue}
+                    onChange={handleOptionChange}
                   >
                     <ToggleButton
                       variant="light"
@@ -97,7 +103,7 @@ function Product({AddCart}) {
                 </tr>
                 <tr>
                   <td>
-                    <Button variant="success" size="lg" onClick={() => AddCart(data)}>
+                    <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})}>
                       Add to cart
                     </Button>
                   </td>

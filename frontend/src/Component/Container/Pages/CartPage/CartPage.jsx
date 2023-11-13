@@ -58,7 +58,7 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
                                 size = "XL"
                             }
                             return (
-                                <tr>
+                                <tr key={key}>
                                     <td id='product key'>
                                         <div className='cart-item'>
                                             <div className='img-item'>
@@ -76,7 +76,10 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart }) {
                                         <Button variant='light'>{item.quantity}</Button>
                                         <Button variant="light" style={{margin:'2px'}} onClick={()=>IncreaseQuantity(key)}>+</Button>
                                     </td>
-                                    <td id='price'>{TotalPrice(item.price,item.quantity)}</td>
+                                    <td id='price' colSpan={2}>{TotalPrice(item.price,item.quantity)}</td>
+                                    <td id='delete-cart'>
+                                        <Button variant="danger" style={{margin:'2px'}} onClick={()=>DeleteCart(key)}>x</Button>
+                                    </td>
                                 </tr>
                             );
                         })}

@@ -77,7 +77,10 @@ function todoProduct(state = initProduct,action){
                 ...state,
                 numberCart:state.numberCart - quantity_,
                 Carts:state.Carts.filter(item=>{
-                    return item.id!==state.Carts[action.payload].id
+                    return (
+                        item.id!==state.Carts[action.payload].id,
+                        item.size!==state.Carts[action.payload].size
+                    )
                 })
                 
             }
