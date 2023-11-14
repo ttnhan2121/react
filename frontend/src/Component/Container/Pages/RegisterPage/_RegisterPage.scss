@@ -33,6 +33,11 @@
             background-color: var(--color_main) !important;
         }
     }
+    .toastbox{
+        position: absolute;
+        top: 70px;
+        right: 10px;
+    }
 }    
 #backtologin{
     margin-top: 10px;

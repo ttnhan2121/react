@@ -12,6 +12,15 @@
             width: 30%;
             height: 0.5rem;
         }
+        .btn-logout{
+            position: absolute;
+            top: 105px;
+            right: 189px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 85px;
+        }
     }
     .body-user{
         display: flex;

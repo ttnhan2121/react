@@ -1,9 +1,17 @@
 import './_User.scss'
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useState,useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 function User() {
+    const navigate = useNavigate();
     const [now, setNow] = useState(0);
-
+    const handleLogout = () => {
+        localStorage.setItem("isLoggedIn",false);
+        navigate('/');
+    }
     useEffect(() => {
         const interval = setInterval(() => {
         setNow(prevNow => {
@@ -21,6 +29,10 @@ function User() {
             <div className='header-user'>
                 <h1>Tài khoản của bạn</h1>
                 <ProgressBar now={now} className='process'/>
+                <Button variant='danger' className='btn-logout' onClick={handleLogout}>
+                    <FontAwesomeIcon icon={faArrowRightFromBracket} />
+                    Đăng xuất
+                </Button>
             </div>
             <div className='body-user'>
                 <div className='purchased'>
