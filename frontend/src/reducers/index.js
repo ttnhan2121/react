@@ -32,7 +32,7 @@ function todoProduct(state = initProduct,action){
                 state.Carts.push(cart);
             } else {
                 let existingCartItem = state.Carts.find(
-                (item) => (item.id && item.size) === (action.payload.id && action.payload.size)
+                (item) => (item.id === action.payload.id && item.size === action.payload.size)
                 );
             
                 if (existingCartItem) {
@@ -73,17 +73,11 @@ function todoProduct(state = initProduct,action){
             }
         case DELETE_CART:
             let quantity_ = state.Carts[action.payload].quantity;
-            return{
+            return {
                 ...state,
-                numberCart:state.numberCart - quantity_,
-                Carts:state.Carts.filter(item=>{
-                    return (
-                        item.id!==state.Carts[action.payload].id,
-                        item.size!==state.Carts[action.payload].size
-                    )
-                })
-                
-            }
+                numberCart: state.numberCart - quantity_,
+                Carts: state.Carts.filter((item, index) => index !== action.payload && (item.id !== state.Carts[action.payload].id || item.size !== state.Carts[action.payload].size))
+            };
         default:
             return state;
     }

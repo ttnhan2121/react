@@ -113,7 +113,7 @@ app.post('/login', async (req, res) => {
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Mật khẩu không đúng' });
+      alert("Mật khẩu không chính xác")
     }
 
     res.status(200).json({ message: 'Đăng nhập thành công' });

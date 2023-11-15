@@ -130,7 +130,7 @@ function Card({ data, AddCart }) {
                 <tr>
                   <td>
                     <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})}>
-                      Add to cart
+                      Thêm vào giỏ hàng
                     </Button>
                   </td>
                 </tr>
