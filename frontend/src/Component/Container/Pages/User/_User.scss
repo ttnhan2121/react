@@ -52,3 +52,26 @@
         }
     }
 }
+.input-user{
+    border: none;
+    padding: 0 10px;
+    width: 100%;
+    background-color: antiquewhite;
+}
+.toastbox{
+    position: absolute;
+    top: 70px;
+    right: 10px;
+    font-size: 1.8rem;
+}
+h2{
+    display: flex;
+    justify-content: space-between;
+}
+// .cssbtn{
+//     display: flex !important;
+//     justify-content: space-between !important;
+//     align-items: center !important;
+//     font-size: 1.1rem !important;
+//     width: 90px !important;
+// }

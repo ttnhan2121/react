@@ -23,15 +23,13 @@ function Content() {
           <hr className="doubleline"></hr>
         </div>
         <div className="row">
-          {data.map((item, index) => {
-            return (
-              <div className="col-xxl-3 py-3 card-hover " key={item.id}>
-                    <Card 
-                      data = {item}
-                    />
-              </div>
-            );
-          })}
+          {data.slice(0, 8).map((item, index) => (
+            <div className="col-xxl-3 py-3 card-hover" key={item.id}>
+              <Card 
+                data={item}
+              />
+            </div>
+          ))}
         </div>
         <Link to={"/shop"} className="btn-showall">
           Xem tất cả

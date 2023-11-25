@@ -10,20 +10,44 @@ const apiURL = "http://localhost:8000/product";
 
 
 function ShopPage() {
+  
   const [selectedItem, setSelectedItem] = useState("Sản phẩm nổi bật");
-  const handleSelect = (eventKey, event) => {
+    const handleSelect = (eventKey, event) => {
     const selectedValue = event.target.textContent;
     setSelectedItem(selectedValue);
+    setSortOption(selectedValue); 
   };
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const [data, setData] = useState([]);
+  const [sortOption, setSortOption] = useState("");
   useEffect(() => { 
     fetch(apiURL) 
       .then((res) => res.json()) 
       .then((result) => setData(result)) 
       .catch((error) => {console.log(error); }); }, []);
+  const sortProducts = () => {
+    switch (sortOption) {
+      case "Giá: Tăng dần":
+        return data.slice().sort((a, b) => a.price - b.price);
+      case "Giá: Giảm dần":
+        return data.slice().sort((a, b) => b.price - a.price);
+      case "Tên: A-Z":
+        return data.slice().sort((a, b) => a.product_name.localeCompare(b.product_name));
+      case "Tên: Z-A":
+        return data.slice().sort((a, b) => b.product_name.localeCompare(a.product_name));
+      case "Cũ nhất":
+        return data.slice().sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+      case "Mới nhất":
+        return data.slice().sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      default:
+        return data;
+    }
+  };
+  const sortedProducts = sortProducts();
+
   return (
     <div className="shoppage">
       <div className="permissions">
@@ -88,18 +112,16 @@ function ShopPage() {
       </div>
       <div className="list-product">
         <div className="row">
-          {data.map((item, index) => {
-            return (
-              <div className="col-xxl-3 py-3 card-hover" key={index}>
-                <Card
-                  data = {item}
-                />
-              </div>
-            );
-          })}
+          {sortedProducts.map((item, index) => {
+              return (
+                <div className="col-xxl-3 py-3 card-hover" key={index}>
+                  <Card data={item} />
+                </div>
+              );
+            })}
         </div>
       </div>
-      <div className="pagnination">
+      {/* <div className="pagnination">
         <Pagination size="lg">
           <Pagination.First />
           <Pagination.Prev />
@@ -109,7 +131,7 @@ function ShopPage() {
           <Pagination.Next />
           <Pagination.Last />
         </Pagination>
-      </div>
+      </div> */}
     </div>
   );
 }

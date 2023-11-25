@@ -28,7 +28,6 @@ function todoProduct(state = initProduct,action){
                 price: action.payload.price,
                 size: action.payload.size
                 };
-                console.log('cart: ', cart);
                 state.Carts.push(cart);
             } else {
                 let existingCartItem = state.Carts.find(

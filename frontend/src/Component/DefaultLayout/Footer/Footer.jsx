@@ -24,7 +24,6 @@ function Footer() {
                     <Link to={'/about'} className="ft-link">Giới thiệu</Link><br></br>
                     <Link to={'/chinh-sach-doi-tra'} className="ft-link">Chính sách đổi trả</Link><br></br>
                     <Link to={'/chinh-sach-bao-mat'} className="ft-link">Chính sách bảo mật</Link><br></br>
-                    <Link to={'/chinh-sach-van-chuyen'} className="ft-link">Chính sách vận chuyển</Link><br></br>
                     <Link to={'/dieu-khoan-dich-vu'} className="ft-link">Điều khoản dịch vụ</Link>
                 </ul>
             </div>

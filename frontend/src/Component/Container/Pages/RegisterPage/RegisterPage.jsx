@@ -7,7 +7,6 @@ import Form from "react-bootstrap/Form";
 import validator from 'validator';
 import Toast from 'react-bootstrap/Toast';
 
-
 function RegisterPage() {
   const [validated, setValidated] = useState(false);
   const [message, setMessage] = useState("");
@@ -44,6 +43,8 @@ function RegisterPage() {
         }),
       });
 
+      const messageError = await response.json();
+
       if (response.ok) {
         setMessage("Tạo tài khoản thành công!");
         firstnameInput.value = "";
@@ -55,7 +56,7 @@ function RegisterPage() {
         setShow(true);
         setValidated(false);
       } else {
-        setMessage("Tạo tài khoản thất bại");
+        setMessage(messageError.message || "Tạo tài khoản thất bại");
         setShow(true);
       }
     } catch (error) {

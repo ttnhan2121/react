@@ -10,17 +10,19 @@ import sizeimg from '../../../../assets/img/size.jpeg'
 function Product({AddCart}) {
     const [data, setData] = useState([]);
     const productId = localStorage.getItem('productId');
-    const [selectedValue, setSelectedValue] = useState(0);
-
+    const [selectedValue, setSelectedValue] = useState(null);
+    const [sizeAvailability, setSizeAvailability] = useState({});
     const handleOptionChange = (value) => {
       setSelectedValue(value);
     };
+  
     useEffect(() => {
         const fetchData = async () => {
         try {
             const response = await fetch(`http://localhost:8000/product/${productId}`);
             const result = await response.json();
             setData(result);
+            setSizeAvailability(result.size);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -62,23 +64,15 @@ function Product({AddCart}) {
                   <ToggleButtonGroup
                     type="radio"
                     name="options"
-                    defaultValue={0}
                     value={selectedValue}
                     onChange={handleOptionChange}
                   >
                     <ToggleButton
                       variant="light"
                       size="lg"
-                      id="sizeS"
-                      value={0}
-                    >
-                      S
-                    </ToggleButton>
-                    <ToggleButton
-                      variant="light"
-                      size="lg"
                       id="sizeM"
-                      value={1}
+                      value={0}
+                      disabled={sizeAvailability.m === 0}
                     >
                       M
                     </ToggleButton>
@@ -86,7 +80,8 @@ function Product({AddCart}) {
                       variant="light"
                       size="lg"
                       id="sizeL"
-                      value={2}
+                      value={1}
+                      disabled={sizeAvailability.l === 0}
                     >
                       L
                     </ToggleButton>
@@ -94,7 +89,8 @@ function Product({AddCart}) {
                       variant="light"
                       size="lg"
                       id="sizeXL"
-                      value={3}
+                      value={2}
+                      disabled={sizeAvailability.xl === 0}
                     >
                       XL
                     </ToggleButton>
@@ -103,7 +99,7 @@ function Product({AddCart}) {
                 </tr>
                 <tr>
                   <td>
-                    <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})}>
+                    <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})} disabled={selectedValue===null}>
                       Thêm vào giỏ hàng
                     </Button>
                   </td>

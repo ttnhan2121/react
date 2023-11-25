@@ -100,3 +100,30 @@
     text-align: right;
     width: 20px;
 }
+.active{
+    display: block;
+}
+.disable{
+    visibility: hidden;
+}
+.modal-body{
+    display: flex !important;
+    .details-cart{
+        table{
+            width: 100%;
+        }
+        padding-right: 10px;
+        margin-right: 10px;
+        flex: 2;
+        border-right: 1px solid gray;
+    }
+    .shipment-details{
+        flex: 1;
+    }
+}
+.icon{
+    color: var(--color_main);
+    font-size: 3rem;
+    margin-top: 10px;
+    margin-bottom: 0;
+}

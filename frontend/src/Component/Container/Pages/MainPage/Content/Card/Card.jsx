@@ -16,7 +16,7 @@ function Card({ data, AddCart }) {
   const handleLinkClick = () => {
     localStorage.setItem('productId', data.id);
   };
-  const [selectedValue, setSelectedValue] = useState(0);
+  const [selectedValue, setSelectedValue] = useState(null);
 
   const handleOptionChange = (value) => {
     setSelectedValue(value);
@@ -88,23 +88,15 @@ function Card({ data, AddCart }) {
                   <ToggleButtonGroup
                     type="radio"
                     name="options"
-                    defaultValue={0}
                     value={selectedValue}
                     onChange={handleOptionChange}
                   >
                     <ToggleButton
                       variant="light"
                       size="lg"
-                      id="sizeS"
-                      value={0}
-                    >
-                      S
-                    </ToggleButton>
-                    <ToggleButton
-                      variant="light"
-                      size="lg"
                       id="sizeM"
-                      value={1}
+                      value={0}
+                      disabled={data.size.m === 0}
                     >
                       M
                     </ToggleButton>
@@ -112,7 +104,8 @@ function Card({ data, AddCart }) {
                       variant="light"
                       size="lg"
                       id="sizeL"
-                      value={2}
+                      value={1}
+                      disabled={data.size.l === 0}
                     >
                       L
                     </ToggleButton>
@@ -120,7 +113,8 @@ function Card({ data, AddCart }) {
                       variant="light"
                       size="lg"
                       id="sizeXL"
-                      value={3}
+                      value={2}
+                      disabled={data.size.xl === 0}
                     >
                       XL
                     </ToggleButton>
@@ -129,7 +123,7 @@ function Card({ data, AddCart }) {
                 </tr>
                 <tr>
                   <td>
-                    <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})}>
+                    <Button variant="success" size="lg" onClick={() => AddCart({...data, size: selectedValue})} disabled={selectedValue===null}>
                       Thêm vào giỏ hàng
                     </Button>
                   </td>
