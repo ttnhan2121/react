@@ -6,6 +6,7 @@ export const GET_NUMBER_CART = 'GET_NUMBER_CART';
 export const ADD_CART = 'ADD_CART' ;
 export const UPDATE_CART = 'UPDATE_CART';
 export const DELETE_CART = 'DELETE_CART';
+export const EMPTY_CART = 'EMPTY_CART';
 
 export const actFetchProductsRequest = () => {
     return (dispatch) => {
@@ -48,7 +49,11 @@ export function DeleteCart(payload){
         payload
     }
 }
-
+export function EmptyCart(){
+    return{
+        type:'EMPTY_CART',
+    }
+}
 export function IncreaseQuantity(payload){
     return{
         type:'INCREASE_QUANTITY',
@@ -61,4 +66,5 @@ export function DecreaseQuantity(payload){
         payload
     }
 }
+
 

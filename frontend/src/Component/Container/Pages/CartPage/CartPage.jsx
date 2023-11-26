@@ -8,12 +8,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { connect } from "react-redux";
-import { IncreaseQuantity, DecreaseQuantity, DeleteCart } from "../../../../action/action";
+import Toast from 'react-bootstrap/Toast';
+import { IncreaseQuantity, DecreaseQuantity, DeleteCart, EmptyCart } from "../../../../action/action";
 
-function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart}) {
+function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart, EmptyCart}) {
     let ListCart = [];
     let TotalCart = 0;
     const [show, setShow] = useState(false);
+    const [showToast, setShowToast] = useState(false);
+    const [message, setMessage] = useState('');
+    const handleShowToast = () =>{
+        setShowToast(false);
+    }
     const [data, setData] = useState([]);
     const userId = localStorage.getItem("userId")
     const handleClose = () => setShow(false);
@@ -58,9 +64,41 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart}) {
         }, 10);
         return () => clearInterval(interval);
     }, []); 
-    const handlePayment = () => {
-        const cartDetailsArray = JSON.parse(localStorage.getItem('persist:root'))?._todoProduct && JSON.parse(JSON.parse(localStorage.getItem('persist:root'))._todoProduct)?.Carts?.map(cart => ({ id: cart.id, quantity: cart.quantity, size: cart.size }));
-        console.log(cartDetailsArray[0].id);
+    const handleEmptyCart = () => {
+        EmptyCart();
+    
+    };
+    const handlePayment = async () => {
+        const payment = window.confirm("Bạn có chắc chắn đặt hàng?");
+        if(payment){
+            const customer_id = userId;
+            const detail = JSON.parse(localStorage.getItem('persist:root'))?._todoProduct && JSON.parse(JSON.parse(localStorage.getItem('persist:root'))._todoProduct)?.Carts?.map(cart => ({ id: cart.id, quantity: cart.quantity, size: cart.size, price: cart.price }));
+            console.log('detail: ', detail);
+            const total_amount = detail.reduce((total, cartItem) => {
+                return total + cartItem.quantity * cartItem.price;
+            }, 0);
+            try {
+                const response = await fetch('http://localhost:8000/invoice', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        customer_id,
+                        total_amount,
+                        details: detail,
+                    }),
+                });
+    
+                const result = await response.json();
+                setShowToast(true);
+                setMessage(result.message);
+                setShow(false);
+                handleEmptyCart();
+            } catch (error) {
+                console.error('Error sending payment request:', error);
+            }
+        }
     }
     if(TotalCart===0){
         return(
@@ -73,6 +111,15 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart}) {
                         Tiếp tục mua hàng
                     </Link>
                 </div>
+                <div className="toastbox">
+                <Toast show={showToast} onClose={handleShowToast} delay={5000} autohide>
+                    <Toast.Header>
+                        <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                        <strong className="me-auto">Hệ thống</strong>
+                    </Toast.Header>
+                    <Toast.Body>{message}</Toast.Body>
+                </Toast>
+                </div>  
             </div>
         );
     }
@@ -133,13 +180,14 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart}) {
                         <h2>Tổng</h2>
                         <h2>{Number(TotalCart).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h2>
                     </div>
-                    <p className='total-permission'>Đã bao gồm thuế: <a href='/' alt='chinhsachvanchuyen'>Phí ship</a> sẽ được tính khi thanh toán</p>
+                    <p className='total-permission'>Đã bao gồm thuế: Phí ship sẽ được tính khi thanh toán</p>
                     <Form.Control as="textarea" rows={5} placeholder='Ghi chú'/>
                     <button className="btn-payment" onClick={handleShow}>
                         Thanh Toán
                     </button>
                 </div>
             </div>
+            
             <Modal
                 centered={true}
                 show={show}
@@ -238,5 +286,6 @@ const mapStateToProps = (state) => {
   export default connect(mapStateToProps, {
     IncreaseQuantity,
     DecreaseQuantity,
-    DeleteCart
+    DeleteCart,
+    EmptyCart
   })(CartPage);

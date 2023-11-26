@@ -43,6 +43,8 @@ connection.query(
     })
   },
   );
+
+//load product with id
 app.get('/product/:id', (req, res) => {
   const productId = req.params.id;
   connection.query('SELECT * FROM `PRODUCT` WHERE `id` = ?', [productId], (err, result) => {
@@ -58,6 +60,7 @@ app.get('/product/:id', (req, res) => {
     }
   });
 });
+//load user with id
 app.get('/user/:id', (req, res) => {
   const userId = req.params.id;
   connection.query('SELECT id, firstname, lastname, email,address, phone FROM `CUSTOMER` WHERE `id` = ?', [userId], (err, result) => {
@@ -73,6 +76,7 @@ app.get('/user/:id', (req, res) => {
     }
   });
 });
+//update user
 app.post('/user/:id/update', async (req, res) => {
   try {
     const userId = req.params.id;
@@ -111,6 +115,9 @@ app.post('/user/:id/update', async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 });
+
+//user register
+
 app.post('/register', async (req, res) => {
   try {
     const { firstname, lastname, email, password } = req.body;
@@ -146,6 +153,8 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 });
+
+//login
 app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -177,35 +186,9 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/reset-password', async (req, res) => {
-  try {
-    const { email, password, rePassword } = req.body;
 
-    if (password !== rePassword) {
-      return res.status(400).json({ message: 'Passwords do not match' });
-    }
+//reset-passord
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    connection.query(
-      'UPDATE CUSTOMER SET password = ? WHERE email = ?',
-      [hashedPassword, email],
-      (error, results) => {
-        if (error) {
-          console.error('Error updating password:', error);
-          return res.status(500).json({ message: 'Password reset failed' });
-        } else if (results.affectedRows === 0) {
-          return res.status(404).json({ message: 'User not found' });
-        } else {
-          return res.status(200).json({ message: 'Password reset successful' });
-        }
-      }
-    );
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
 app.post('/forgotpw', async (req, res) => {
   const { email, newPassword, rePassword } = req.body;
 
@@ -235,6 +218,57 @@ app.post('/forgotpw', async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+app.post('/invoice', async (req, res) => {
+  const { customer_id, total_amount, details } = req.body;
+
+  try {
+    connection.query(
+      'INSERT INTO INVOICE (customer_id, purchase_date, total_amount) VALUES (?, NOW(), ?)',
+      [customer_id, total_amount],
+      (error, invoiceResults) => {
+        if (error) {
+          res.status(500).json({ message: 'Đặt hàng không thành công!'});
+        } else {
+          const invoiceId = invoiceResults.insertId;
+          Promise.all(
+            details.map(detail => {
+              return new Promise((resolve, reject) => {
+                connection.query(
+                  'INSERT INTO INVOICE_DETAILS (invoice_id, product_id, quantity, size) VALUES (?, ?, ?, ?)',
+                  [invoiceId, detail.id, detail.quantity, detail.size],
+                  (detailError, detailResults) => {
+                    if (detailError) {
+                      res.status(500).json({ message: 'Đặt hàng không thành công!'});
+                      reject(detailError);
+                    } else {
+                      resolve();
+                    }
+                  }
+                );
+              });
+            })
+          )
+            .then(() => {
+              res.status(201).json({ message: 'Đặt hàng thành công!' });
+            })
+            .catch(error => {
+              res.status(500).json({ message: 'Đặt hàng không thành công!'});
+            });
+        }
+      }
+    );
+  } catch (error) {
+    res.status(500).json({ message: 'Đặt hàng không thành công!'});
+  }
+});
+
+
+
+
+
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}/product`)
 })

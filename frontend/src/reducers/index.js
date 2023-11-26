@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {GET_ALL_PRODUCT,GET_NUMBER_CART,ADD_CART, DECREASE_QUANTITY, INCREASE_QUANTITY, DELETE_CART} from  '../action/action';
+import {GET_ALL_PRODUCT,GET_NUMBER_CART,ADD_CART, DECREASE_QUANTITY, INCREASE_QUANTITY, DELETE_CART, EMPTY_CART} from  '../action/action';
 
 const initProduct = {
     numberCart:0,
@@ -76,6 +76,12 @@ function todoProduct(state = initProduct,action){
                 ...state,
                 numberCart: state.numberCart - quantity_,
                 Carts: state.Carts.filter((item, index) => index !== action.payload && (item.id !== state.Carts[action.payload].id || item.size !== state.Carts[action.payload].size))
+            };
+        case EMPTY_CART:
+            return {
+                ...state,
+                numberCart: 0,
+                Carts: [],
             };
         default:
             return state;
