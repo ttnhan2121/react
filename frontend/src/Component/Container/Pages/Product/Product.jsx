@@ -110,9 +110,9 @@ function Product({AddCart}) {
             <div className='description'>
                 <h1>Mô tả</h1>
                 <div className='content'>
-                    <p>
-                        {data.description}
-                    </p>
+                    <span dangerouslySetInnerHTML={{
+                      __html: data.description
+                    }} />
                 </div>
                 <h1>Hướng dẫn chọn Size</h1>
                 <img src={sizeimg} alt='sizeimg' width={500}></img>

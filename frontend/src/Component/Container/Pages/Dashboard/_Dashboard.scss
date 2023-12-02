@@ -1,0 +1,115 @@
+.dashboard{
+    margin-top: 100px;
+    margin-bottom: 40px;
+    .header-dashboard{
+        position: relative;
+        text-align: center;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.777);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        .title-header{
+            font-size: 4rem;
+        }
+        .btnExit{
+            position: absolute;
+            top:15.5px;
+            right: 0;
+        }
+    }
+    .body-dashboard{
+        .box{
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            padding: 20px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 30px;
+        }
+        .product-box{
+            .body-product{
+                height: 500px;
+                margin-top: 10px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 20px;
+                display: block;
+                overflow: auto;
+                padding: 10px;
+                table{
+                    width: 100%;
+                    border-radius: 10px;
+                    td{
+                        padding: 10px;
+                        border-bottom: 1px solid gray;
+                    }
+                    tr{
+                        max-height: 150px;
+                    }
+                    tr:hover{
+                        background-color: rgba(0,0,0,0.2);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .customer-box{
+            .body-customer{
+                height: 500px;
+                margin-top: 10px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 20px;
+                padding: 10px;
+                table{
+                    width: 100%;
+                    border-radius: 10px;
+                    td{
+                        padding: 10px;
+                        border-bottom: 1px solid gray;
+                    }
+                    tr:hover{
+                        background-color: rgba(0,0,0,0.2);
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .invoice-box{
+            .body-invoice{
+                height: 500px;
+                margin-top: 10px;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+                border-radius: 20px;
+                display: flex;
+                .invoice{
+                    flex: 1;
+                    padding: 10px;
+                    table{
+                        width: 100%;
+                        border-radius: 10px;
+                        td{
+                            padding: 5px;
+                            border-bottom: 1px solid gray;
+                        }
+                        tr:hover{
+                            background-color: rgba(0,0,0,0.2);
+                            cursor: pointer;
+                        }
+                    }
+                }
+                .invoice-details{
+                    flex: 1;
+                    padding: 10px;
+                    table{
+                        width: 100%;
+                        border-radius: 10px;
+                        td{
+                            padding: 5px;
+                            border-bottom: 1px solid gray;
+                        }
+                        tr:hover{
+                            background-color: rgba(0,0,0,0.2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

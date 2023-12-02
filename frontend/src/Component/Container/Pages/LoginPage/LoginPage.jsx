@@ -48,8 +48,10 @@ function LoginPage() {
         email.focus(); 
         localStorage.setItem("userId",messageError.userId);
         localStorage.setItem("isLoggedIn", true);
-        
-        navigate('/');
+        if(localStorage.getItem("userId") === "admin")
+          navigate('/dashboard');
+        else
+          navigate('/');
       } else {
         setMessage(messageError.message || 'Đăng nhập thất bại!');
         setShow(true);
@@ -83,11 +85,11 @@ function LoginPage() {
       </Form>
       <div className="toastbox">
           <Toast show={show} onClose={handleShowToast} delay={5000} autohide>
-              <Toast.Header>
-                  <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                  <strong className="me-auto">Hệ thống</strong>
-              </Toast.Header>
-              <Toast.Body>{message}</Toast.Body>
+            <Toast.Header>
+                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                <span className="me-auto" style={{fontSize: '1.5rem'}}>Hệ thống</span>
+            </Toast.Header>
+            <Toast.Body style={{fontSize: '1.5rem'}}>{message}</Toast.Body>
           </Toast>
       </div>
     </div>

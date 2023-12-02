@@ -3,25 +3,30 @@ import ProgressBar from 'react-bootstrap/ProgressBar';
 import { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightFromBracket, faFilePen,faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Toast from 'react-bootstrap/Toast';
 function User() {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
+    const [dataInvoice, setDataInvoice] = useState([]);
     const [now, setNow] = useState(0);
     const [edit, setEdit] = useState(false);
+    const [showDetail, setShowDetail] = useState(false);
     const userId = localStorage.getItem('userId');
     const [show, setShow] = useState(false);
     const [message, setMessage] = useState('');
+    const [selectedInvoiceId, setSelectedInvoiceId] = useState(0);
+    const [invoice_details, setinvoice_details] = useState([]);
     const handleShowToast = () =>{
         setShow(false);
     }
     const handleLogout = () => {
         localStorage.setItem("isLoggedIn",false);
+        localStorage.setItem("userId", null);
         navigate('/');
     }
-    const loadUser = async () => {
+    const loadinfoUser = async () => {
         try {
           const response = await fetch(`http://localhost:8000/user/${userId}`);
           const result = await response.json();
@@ -29,11 +34,21 @@ function User() {
         } catch (error) {
           console.error('Error fetching data:', error);
         }
-      };
+    };
+    const loadInvoice = async () => {
+        try {
+            const response = await fetch(`http://localhost:8000/invoice/${userId}`);
+            const result = await response.json();
+            setDataInvoice(result);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+    }
     
     useEffect(() => {
-    loadUser();
-    }, [userId]);
+        loadinfoUser();
+        loadInvoice();
+    }, []);
     const handleEdit = () =>{
         setEdit(true);
     }
@@ -56,7 +71,7 @@ function User() {
       
       
             if (response.ok) {
-              loadUser();
+              loadinfoUser();
               setEdit(false); 
               setShow(true); 
               setMessage('Chỉnh sửa thông tin thành công'); 
@@ -80,6 +95,23 @@ function User() {
         }, 10);
         return () => clearInterval(interval);
     }, []); 
+    const handleShowDetails = (invoice_id) =>{
+        setSelectedInvoiceId(invoice_id);
+        const loadInvoiceDetails = async () => {
+            try {
+                const response = await fetch(`http://localhost:8000/invoice_details/${invoice_id}`);
+                const result = await response.json();
+                setinvoice_details(result);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+              }
+        }
+        loadInvoiceDetails();
+        setShowDetail(true);
+    }
+    const handleCloseDetails = () => {
+        setShowDetail(false);
+    }
     return (  
         <div className='user'>
             <div className='header-user'>
@@ -90,6 +122,34 @@ function User() {
                     Đăng xuất
                 </Button>
             </div>
+            <Modal show={showDetail} onHide={handleCloseDetails} centered>
+                <Modal.Header closeButton>
+                <Modal.Title>Chi tiết hóa đơn {selectedInvoiceId}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <table style={{width: '100%'}}>
+                        <tr>
+                            <td>STT</td>
+                            <td>Sản phẩm</td>
+                            <td>Số lượng</td>
+                            <td>Kích thước</td>
+                        </tr>
+                        {invoice_details.map((item, index)=>(
+                            <tr key={index}>
+                                <td>{index+1}</td>
+                                <td>{item.product_id}</td>
+                                <td>{item.quantity}</td>
+                                <td>{item.size === 1 ? "M" : item.size === 2 ? "L" : "XL"}</td>
+                            </tr>
+                        ))}
+                    </table>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleCloseDetails}>
+                    Đóng
+                </Button>
+                </Modal.Footer>
+            </Modal>
             <div className='body-user'>
                 <div className='purchased'>
                     <h2>Lịch sử mua hàng</h2>
@@ -101,6 +161,15 @@ function User() {
                             <td>Trạng thái vận chuyển</td>
                             <td>Tổng tiền</td>
                         </tr>
+                        {dataInvoice.map((item,index)=>(
+                            <tr key={index}>
+                                <td><p onClick={() => handleShowDetails(item.invoice_id)}>{item.invoice_id}</p></td>
+                                <td>{new Date(item.purchase_date).toLocaleDateString()}</td>
+                                <td>{item.order_status}</td>
+                                <td>{item.shipping_status}</td>
+                                <td>{Number(item.total_amount).toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</td>
+                            </tr>
+                        ))}
                     </table>
                 </div>
                 <div className='address'>
@@ -170,9 +239,9 @@ function User() {
                     <Toast show={show} onClose={handleShowToast} delay={5000} autohide>
                         <Toast.Header>
                             <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                            <strong className="me-auto">Hệ thống</strong>
+                            <span className="me-auto" style={{fontSize: '1.5rem'}}>Hệ thống</span>
                         </Toast.Header>
-                        <Toast.Body>{message}</Toast.Body>
+                        <Toast.Body style={{fontSize: '1.5rem'}}>{message}</Toast.Body>
                     </Toast>
                 </div>
             </div>

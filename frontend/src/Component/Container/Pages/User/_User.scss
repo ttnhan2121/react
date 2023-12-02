@@ -33,9 +33,20 @@
             border-radius: 10px;
             margin: 5px;
             padding: 20px;
+            display: block;
+            overflow: auto;
             #table-purchased{
                 width: 100%;
                 font-size: 1.5rem;
+                tr{
+                    p{
+                        text-decoration: underline;
+                        color: blue;
+                        &:hover{
+                            cursor: pointer;
+                        }
+                    }
+                }
             }
         }
         .address{

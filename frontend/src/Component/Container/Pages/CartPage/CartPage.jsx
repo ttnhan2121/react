@@ -21,9 +21,16 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart, Empty
         setShowToast(false);
     }
     const [data, setData] = useState([]);
-    const userId = localStorage.getItem("userId")
+    const userId = localStorage.getItem("userId");
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {
+        if(userId === "null"){
+            setMessage("Vui lòng đăng nhập trước khi thanh toán!");
+            setShowToast(true);
+        }else{
+            setShow(true);
+        }
+    }
     Object.keys(items.Carts).forEach(function (item) {
         TotalCart += items.Carts[item].quantity * items.Carts[item].price;
         ListCart.push(items.Carts[item]);
@@ -69,34 +76,38 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart, Empty
     
     };
     const handlePayment = async () => {
-        const payment = window.confirm("Bạn có chắc chắn đặt hàng?");
-        if(payment){
-            const customer_id = userId;
-            const detail = JSON.parse(localStorage.getItem('persist:root'))?._todoProduct && JSON.parse(JSON.parse(localStorage.getItem('persist:root'))._todoProduct)?.Carts?.map(cart => ({ id: cart.id, quantity: cart.quantity, size: cart.size, price: cart.price }));
-            console.log('detail: ', detail);
-            const total_amount = detail.reduce((total, cartItem) => {
-                return total + cartItem.quantity * cartItem.price;
-            }, 0);
-            try {
-                const response = await fetch('http://localhost:8000/invoice', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        customer_id,
-                        total_amount,
-                        details: detail,
-                    }),
-                });
-    
-                const result = await response.json();
-                setShowToast(true);
-                setMessage(result.message);
-                setShow(false);
-                handleEmptyCart();
-            } catch (error) {
-                console.error('Error sending payment request:', error);
+        if(data.phone === null || data.address === null){
+            window.confirm("Vui lòng điền đầy đủ thông tin trước khi thanh toán!");
+        }else{
+            const payment = window.confirm("Bạn có chắc chắn đặt hàng?");
+            if(payment){
+                const customer_id = userId;
+                const detail = JSON.parse(localStorage.getItem('persist:root'))?._todoProduct && JSON.parse(JSON.parse(localStorage.getItem('persist:root'))._todoProduct)?.Carts?.map(cart => ({ id: cart.id, quantity: cart.quantity, size: cart.size, price: cart.price }));
+                console.log('detail: ', detail);
+                const total_amount = detail.reduce((total, cartItem) => {
+                    return total + cartItem.quantity * cartItem.price;
+                }, 0);
+                try {
+                    const response = await fetch('http://localhost:8000/invoice', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            customer_id,
+                            total_amount,
+                            details: detail,
+                        }),
+                    });
+        
+                    const result = await response.json();
+                    setShowToast(true);
+                    setMessage(result.message);
+                    setShow(false);
+                    handleEmptyCart();
+                } catch (error) {
+                    console.error('Error sending payment request:', error);
+                }
             }
         }
     }
@@ -112,13 +123,13 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart, Empty
                     </Link>
                 </div>
                 <div className="toastbox">
-                <Toast show={showToast} onClose={handleShowToast} delay={5000} autohide>
-                    <Toast.Header>
-                        <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                        <strong className="me-auto">Hệ thống</strong>
-                    </Toast.Header>
-                    <Toast.Body>{message}</Toast.Body>
-                </Toast>
+                    <Toast show={showToast} onClose={handleShowToast} delay={5000} autohide>
+                        <Toast.Header>
+                            <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                            <span className="me-auto" style={{fontSize: '1.5rem'}}>Hệ thống</span>
+                        </Toast.Header>
+                        <Toast.Body style={{fontSize: '1.5rem'}}>{message}</Toast.Body>
+                    </Toast>
                 </div>  
             </div>
         );
@@ -274,6 +285,15 @@ function CartPage({ items, IncreaseQuantity, DecreaseQuantity, DeleteCart, Empty
                 <Button variant="light" onClick={handlePayment}>Đặt hàng</Button>
                 </Modal.Footer>
             </Modal>
+            <div className="toastbox">
+                <Toast show={showToast} onClose={handleShowToast} delay={5000} autohide>
+                    <Toast.Header>
+                        <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                        <span className="me-auto" style={{fontSize: '1.5rem'}}>Hệ thống</span>
+                    </Toast.Header>
+                    <Toast.Body style={{fontSize: '1.5rem'}}>{message}</Toast.Body>
+                </Toast>
+            </div>  
         </div>
     );
 }

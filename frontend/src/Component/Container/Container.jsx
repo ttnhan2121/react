@@ -13,6 +13,7 @@ import ForgotPW from './Pages/ForgotPW/ForgotPW';
 import './_Container.scss'
 import CartPage from './Pages/CartPage/CartPage';
 import Product from './Pages/Product/Product';
+import Dashboard from './Pages/Dashboard/Dashboard';
 function Container() {
     return ( 
         <div className='container'>
@@ -30,6 +31,7 @@ function Container() {
                 <Route path='/chinh-sach-bao-mat' element = {<ChinhSachBaoMat/>}/>
                 <Route path='/chinh-sach-van-chuyen' element = {<ChinhSachVanChuyen/>}/>
                 <Route path='/dieu-khoan-dich-vu' element = {<DieuKhoanDichVu/>}/>
+                <Route path='/dashboard' element = {<Dashboard/>}/>
             </Routes>
            
         </div>

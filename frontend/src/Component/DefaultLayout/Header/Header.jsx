@@ -10,9 +10,15 @@ function Header({numberCart}) {
     const handleClose = () => setShow(false);
     const navigate = useNavigate();
     const handle = () => {
-        const state = localStorage.getItem('isLoggedIn') === 'true';
-        const path = state ? '/user' : '/login';
-        navigate(path);
+        const admin = localStorage.getItem('userId');
+        if(admin === "admin"){
+            const path = "/dashboard";
+            navigate(path);
+        }else{
+            const state = localStorage.getItem('isLoggedIn') === 'true';
+            const path = state ? '/user' : '/login';
+            navigate(path);
+        }
     }
     return ( 
         <header className="header">

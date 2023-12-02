@@ -101,10 +101,10 @@ function ForgotPW() {
       <div className="toastbox">
           <Toast show={show} onClose={handleShowToast} delay={5000} autohide>
               <Toast.Header>
-                  <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
-                  <strong className="me-auto">Hệ thống</strong>
+                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                <span className="me-auto" style={{fontSize: '1.5rem'}}>Hệ thống</span>
               </Toast.Header>
-              <Toast.Body>{message}</Toast.Body>
+              <Toast.Body style={{fontSize: '1.5rem'}}>{message}</Toast.Body>
           </Toast>
       </div>
     </div>
@@ -112,36 +112,3 @@ function ForgotPW() {
 }
 
 export default ForgotPW;
-
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
-// import { Link } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.css"
-// function ForgotPW() {
-//   return (
-//     <div className="forgotpw">
-//       <div className="forgotpw-box">
-//         <h1 className="text-forgotpw">Khôi phục mật khẩu</h1>
-//         <Form className="forgotpw-form">
-//           <Form.Group className="mb-3" controlId="formBasicEmail">
-//             <Form.Label>Email</Form.Label>
-//             <Form.Control required type="email" placeholder="example@example.com" />
-//           </Form.Group>
-//           <Form.Group className="mb-3" controlId="formBasicPassword">
-//             <Form.Label>Mật khẩu mới</Form.Label>
-//             <Form.Control required type="password" placeholder="Nhập mật khẩu" />
-//           </Form.Group>
-//           <Form.Group className="mb-3" controlId="formBasicRePassword">
-//             <Form.Label>Nhập lại mật khẩu</Form.Label>
-//             <Form.Control required type="password" placeholder="Nhập lại mật khẩu" />
-//           </Form.Group>
-//           <Button className="btn-submit" variant="primary" type="submit">
-//             Khôi phục
-//           </Button>
-//           <Link id='backtologin' to={'/login'} >Đăng nhập</Link>
-//         </Form>
-//       </div>
-//     </div>
-//   );
-// }
-// export default ForgotPW;
