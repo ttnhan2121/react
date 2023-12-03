@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Modal } from "react-bootstrap";
+import { Toast } from "react-bootstrap";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 function Dasshboard() {
@@ -13,7 +14,11 @@ function Dasshboard() {
   const [invoice_details, setinvoice_details] = useState([]);
   const [editorContent, setEditorContent] = useState("");
   const [selectedItem, setSelectedItem] = useState([]);
+  const [imageList, setImageList] = useState([]);
   const [showEdit, setShowEdit] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const handle = () => {
     localStorage.setItem("isLoggedIn", false);
@@ -71,7 +76,15 @@ function Dasshboard() {
   const handleCloseEdit = () => {
     setShowEdit(false);
   };
-
+  const handleShowAdd = () => {
+    setShowAdd(true);
+  };
+  const handleCloseAdd = () => {
+    setShowAdd(false);
+  };
+  const handleShowToast = () => {
+    setShowToast(false);
+  }
   const handleSaveButtonClick = async () => {
     const id = selectedItem.id;
     const product_name = document.getElementById("product_name").value;
@@ -107,12 +120,87 @@ function Dasshboard() {
 
       if (response.ok) {
         const responseData = await response.json();
-        console.log("Server response:", responseData);
+        setMessage(responseData.message);
+        setShowToast(true);
       } else {
-        console.error("Server error:", response.statusText);
+        setMessage("Thất bại");
+        setShowToast(true);  
       }
     } catch (error) {
-      console.error("Error update product:", error);
+        setMessage("Thất bại");
+        setShowToast(true);  
+    }
+  };
+  const handleRemoveProduct = async (item) => {
+    const confirm = window.confirm("Bạn có chắc muốn xóa sản phẩm này");
+    if(confirm){
+      try {
+        const response = await fetch("http://localhost:8000/removeproduct", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id: item.id }),
+        });
+  
+        if (response.ok) {
+          const responseData = await response.json();
+          setMessage(responseData.message);
+          setShowToast(true);
+        } else {
+          setMessage("Thất bại");
+        setShowToast(true);  
+        }
+      } catch (error) {
+        setMessage("Thất bại");
+        setShowToast(true);  
+      }
+    }
+  }
+  const handleAddProduct = async () => {
+    const id = document.getElementById("id_in").value;
+    const product_name = document.getElementById("product_name_in").value;
+    const price = parseInt(document.getElementById("price_in").value);
+    const image = imageList;
+    const m = parseInt(document.getElementById("m_in").value);
+    const l = parseInt(document.getElementById("l_in").value);
+    const xl = parseInt(document.getElementById("xl_in").value);
+    const size = {
+      l: l,
+      m: m,
+      xl: xl
+    }
+    const description = editorContent;
+    const data = {
+      id: id,
+      product_name: product_name,
+      price: price,
+      image: image,
+      size: size,
+      description: description,
+    };
+    try {
+      const response = await fetch("http://localhost:8000/insertproduct", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        setMessage(responseData.message);
+        setShowToast(true);
+        setShowAdd(false);
+        setImageList([]);
+      } else {
+        setMessage("Thất bại");
+        setShowToast(true);      
+      }
+    } catch (error) {
+        setMessage("Thất bại");
+        setShowToast(true);  
     }
   };
   const handleFileUpload = async (file) => {
@@ -131,12 +219,21 @@ function Dasshboard() {
       } else {
         console.error("Server error:", response.statusText);
       }
-    } catch (error) {
+    } catch (error){
       console.error("Error uploading files:", error);
     }
   };
   return (
     <div className="dashboard">
+      <div className="toastbox">
+        <Toast show={showToast} onClose={handleShowToast} delay={5000} autohide>
+            <Toast.Header>
+                <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                <span className="me-auto" style={{fontSize: '1.5rem'}}>Hệ thống</span>
+            </Toast.Header>
+            <Toast.Body style={{fontSize: '1.5rem'}}>{message}</Toast.Body>
+        </Toast>
+      </div>  
       <Modal show={showEdit} onHide={handleCloseEdit} centered size="xl">
         <Modal.Header closeButton>
           <Modal.Title>Sửa sản phẩm</Modal.Title>
@@ -318,10 +415,144 @@ function Dasshboard() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseEdit}>
-            Close
+            Đóng
           </Button>
           <Button variant="info" onClick={handleSaveButtonClick}>
-            Save Changes
+            Lưu thay đổi
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showAdd} onHide={handleShowAdd} centered size="xl">
+        <Modal.Header closeButton>
+          <Modal.Title>Thêm sản phẩm</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div style={{ width: "100%" }}>
+            <table style={{ width: "100%" }}>
+              <tr>
+                <td>Mã sản phẩm:</td>
+                <td>
+                  <input id="id_in"></input>
+                </td>
+              </tr>
+              <tr>
+                <td>Tên sản phẩm:</td>
+                <td>
+                  <input
+                    id="product_name_in"
+                  ></input>
+                </td>
+              </tr>
+              <tr>
+                <td>Giá:</td>
+                <td>
+                  <input id="price_in"></input>
+                </td>
+              </tr>
+              <tr>
+                <td>Hình ảnh:</td>
+                <table>
+                  <tr>
+                    <td>
+                      {imageList?.map((img, index) => (
+                        <div
+                          style={{
+                            position: "relative",
+                            display: "inline-block",
+                          }}
+                        >
+                          <img
+                            src={img}
+                            alt={img}
+                            width={150}
+                            height={150}
+                            style={{ marginRight: "2px" }}
+                          ></img>
+                          <button
+                            style={{
+                              position: "absolute",
+                              top: 0,
+                              right: 2,
+                            }}
+                            id={index}
+                            onClick={(e) => {
+                              const index = e.target.id;
+                              let updatedImageList = imageList;
+                              updatedImageList = updatedImageList.filter(
+                                (img, idx) => idx !== Number(index)
+                              );
+                              setImageList(updatedImageList);
+                            }}
+                          >
+                            x
+                          </button>
+                        </div>
+                      ))}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input
+                        type="file"
+                        id="image"
+                        multiple
+                        onChange={(e) => {
+                          const file = e.target.files[0];
+                          const path = "http://localhost:8000/" + file.name;
+                          handleFileUpload(file);
+                          setImageList([...imageList,path]);
+                        }}
+                      ></input>
+                    </td>
+                  </tr>
+                </table>
+              </tr>
+              <tr>
+                <td>Kích thước:</td>
+                <td>
+                  <table>
+                    <tr>
+                      <td>
+                        M: <input id="m_in"></input>
+                      </td>
+                      <td>
+                        L: <input id="l_in"></input>
+                      </td>
+                      <td>
+                        XL:
+                        <input id="xl_in"></input>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td>Mô tả:</td>
+                <td>
+                  <div
+                    style={{
+                      display: "block",
+                      overflow: "auto",
+                      maxWidth: "100%",
+                      maxHeight: "300px",
+                    }}
+                  >
+                    <CKEditor
+                      editor={ClassicEditor}
+                      onBlur={handleEditorBlur}
+                    />
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAdd}>
+            Đóng
+          </Button>
+          <Button variant="info" onClick={handleAddProduct}>
+            Thêm sản phẩm
           </Button>
         </Modal.Footer>
       </Modal>
@@ -346,6 +577,11 @@ function Dasshboard() {
                   <td>Kích thước</td>
                   <td>Mô tả</td>
                   <td>Hành động</td>
+                </tr>
+                <tr>
+                  <td colSpan={6} align="right">
+                    <Button variant="info" onClick={handleShowAdd}>Thêm sản phẩm</Button>
+                  </td>
                 </tr>
               </thead>
               <tbody>
@@ -397,7 +633,7 @@ function Dasshboard() {
                         >
                           Sửa
                         </Button>
-                        <Button variant="danger">Xóa</Button>
+                        <Button variant="danger" onClick={() => handleRemoveProduct(item)}>Xóa</Button>
                       </div>
                     </td>
                   </tr>

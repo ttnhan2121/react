@@ -66,7 +66,7 @@ function LoginPage() {
     <div className="loginpage">
       <Form noValidate validated={validated}>
         <div className="login-box">
-          <h1 className="text-login">Login</h1>
+          <h1 className="text-login">Đăng nhập</h1>
           <Form className="login-form">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>

@@ -44,6 +44,9 @@ function Product({AddCart}) {
                             <img src={image} alt={`img-prod-${index}`} className="img-product"></img>
                             </Carousel.Item>
                         ))}
+                        <Carousel.Item>
+                          <img src={sizeimg} alt='sizeimg' className='img-product' width={389}></img>
+                        </Carousel.Item>
                     </Carousel>
                 </div>
                 </div>
@@ -110,7 +113,7 @@ function Product({AddCart}) {
             <div className='description'>
                 <h1>Mô tả</h1>
                 <div className='content'>
-                    <span dangerouslySetInnerHTML={{
+                    <span style={{fontSize: '1.3rem'}} dangerouslySetInnerHTML={{
                       __html: data.description
                     }} />
                 </div>

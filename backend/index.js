@@ -205,6 +205,50 @@ app.post("/uploadfile",upload.array("files", 12), async (req, res) => {
   const files = req.files;
   res.status(200).json({ message: "Thành công" });
 })
+//insert product
+app.post("/insertproduct", async (req, res) => {
+  try {
+    const data = req.body;
+
+    connection.query(
+      "INSERT INTO PRODUCT (id,product_name, price, description, image, size) VALUES (?,?,?,?,?,?)",
+      [data.id, data.product_name, data.price, data.description, JSON.stringify(data.image), JSON.stringify(data.size)],
+      (error, results) => {
+        if (error) {
+          res.status(400).json({ message: "Thêm thất bại" });
+          
+        } else {
+          res.status(200).json({ message: "Thêm thành công" });
+        }
+      }
+    );
+  } catch (error) {
+    res.status(500).json({ message: "Thêm thất bại" });
+  }
+});
+//remove product 
+app.post("/removeproduct", async (req, res) => {
+  try {
+    const {id} = req.body;
+
+    connection.query(
+      "DELETE FROM PRODUCT WHERE id = ?",
+      [id],
+      (error, results) => {
+        if (error) {
+          res.status(400).json({ message: "Xóa thất bại" });
+          
+        } else {
+          res.status(200).json({ message: "Xóa thành công" });
+        }
+      }
+    );
+  } catch (error) {
+    console.error("Error remove product:", error);
+    res.status(500).json({ message: "Xóa thất bại" });
+  }
+});
+//update product
 app.post("/updateproduct", async (req, res) => {
   try {
     const data = req.body;
@@ -214,16 +258,16 @@ app.post("/updateproduct", async (req, res) => {
       [data.product_name, data.price, data.description, JSON.stringify(data.image), JSON.stringify(data.size), data.id],
       (error, results) => {
         if (error) {
-          res.status(400).json({ error: error });
+          res.status(400).json({ message: "Sửa đổi thất bại" });
           
         } else {
-          res.status(200).json({ message: "Thành công" });
+          res.status(200).json({ message: "Sửa đổi thành công" });
         }
       }
     );
   } catch (error) {
     console.error("Error updating product:", error);
-    res.status(500).json({ error: "Internal Server Error" });
+    res.status(500).json({ message: "Sửa đổi thất bại" });
   }
 });
 
